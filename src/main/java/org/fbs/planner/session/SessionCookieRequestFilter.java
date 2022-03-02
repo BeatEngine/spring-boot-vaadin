@@ -120,18 +120,27 @@ public class SessionCookieRequestFilter implements Filter
 		}
 		else if (valideSession)
 		{
-			//Prüfung der Rechte des Users --> Auf welche URLs darf er zugreifen bzw. nicht zugreifen?
-			final UserPermissionsPathMatcher pathPermissions = new UserPermissionsPathMatcher(service.getSessions().getUserId(),
-																														 userRoles, permissions,
-																														 permissionRoles);
-			if (pathPermissions.userHasPermissionFor(contextPath))
+			if("/".equals(contextPath))
 			{
-				chain.doFilter(request, response);
+				redirectHome(httpServletRequest, (HttpServletResponse) response, "Seite nicht gefunden!");
 			}
 			else
 			{
-				//Umleitung mit Begründung
-				redirectHome(httpServletRequest, (HttpServletResponse) response, "Nicht genügend Rechte!");
+
+				//Prüfung der Rechte des Users --> Auf welche URLs darf er zugreifen bzw. nicht zugreifen?
+				final UserPermissionsPathMatcher pathPermissions = new UserPermissionsPathMatcher(
+						service.getSessions().getUserId(),
+						userRoles, permissions,
+						permissionRoles);
+				if (pathPermissions.userHasPermissionFor(contextPath))
+				{
+					chain.doFilter(request, response);
+				}
+				else
+				{
+					//Umleitung mit Begründung
+					redirectHome(httpServletRequest, (HttpServletResponse) response, "Nicht genügend Rechte!");
+				}
 			}
 		}
 		else
@@ -184,7 +193,7 @@ public class SessionCookieRequestFilter implements Filter
 		final String redirect   = URLEncoder.encode(requestURI, StandardCharsets.UTF_8);
 		try
 		{
-			httpResponse.sendRedirect("/?reason=" + URLEncoder.encode(info, StandardCharsets.UTF_8));
+			httpResponse.sendRedirect("/home?reason=" + URLEncoder.encode(info, StandardCharsets.UTF_8));
 			//httpResponse.setStatus(HttpServletResponse.SC_OK);
 			httpResponse.getOutputStream().print(info);
 			httpResponse.getOutputStream().flush();

@@ -6,6 +6,15 @@
     display: block;
 }
 
+.user-name
+{
+    position: absolute;
+    right: 30px;
+
+    background-color: transparent;
+    font-size: 18pt;
+}
+
 .nav-bar-element
 {
     display: inline-block;

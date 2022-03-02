@@ -1,6 +1,6 @@
 function lastPath()
 {
-    var redirectInp = document.getElementById("redirect");
+    var redirectInp = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementById("redirect");
     var lastLoc = window.location.href;
     if (lastLoc.indexOf("logout") < 0) {
         //Relativer Pfad *:*:*[/...]

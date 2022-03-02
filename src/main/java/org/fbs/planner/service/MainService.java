@@ -1,16 +1,68 @@
 package org.fbs.planner.service;
 
 import org.fbs.planner.session.CookieSessionManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.net.http.HttpRequest;
 
 @Service
 public class MainService
 {
+    private static MainService INSTANCE = null;
 
-    CookieSessionManager sessions;
+    @Autowired
+    private Environment properties;
+
+    private CookieSessionManager sessions = new CookieSessionManager();
 
     public CookieSessionManager getSessions()
     {
         return sessions;
+    }
+
+    public static MainService getInstance()
+    {
+        return INSTANCE;
+    }
+
+    /**
+     * Anmelden
+     * @return Cookie-Session-Id
+     */
+    public String signIn(final HttpServletRequest request, final HttpServletResponse response, final String username, final String password, final String displayName)
+    {
+        if(INSTANCE == null)
+        {
+            INSTANCE = this;
+        }
+
+        sessions.maxCookieUpdateDelayMinutes = Integer
+                .valueOf(properties.getProperty("cookie-session-maxCookieUpdateDelayMinutes"));
+        sessions.maxCookieLifeTimeMinutes = Integer
+                .valueOf(properties.getProperty("cookie-session-maxCookieLifeTimeMinutes"));
+
+        final String usrnm = username;
+        final String paswd = password;
+
+        String sid = sessions.newSession();
+        sessions.setAccount(username, sid);
+        sessions.logIn(sid);
+        sessions.setDisplayName(displayName, sid);
+        sessions.setPassword(password, sid);
+        //Set Cookie
+
+        final Cookie cookie = new Cookie("session", sid);
+        System.out.println("Sessions on server: " + sessions.numberOfSessions());
+        cookie.setDomain(request.getServerName());
+        /* minutes --> seconds */
+        cookie.setMaxAge(sessions.maxCookieLifeTimeMinutes * 60);
+        response.addCookie(cookie);
+
+        return sid;
     }
 }
