@@ -10,6 +10,7 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.fbs.planner.DefinitionPaths;
+import org.fbs.planner.ui.general.InfoLine;
 import org.fbs.planner.ui.general.NavBar;
 
 @PageTitle("Login | FBS - Vertretungsplaner")
@@ -34,6 +35,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver
         setSizeFull();
 
 
+
+
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
@@ -41,6 +44,8 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver
 
 
         add(new H1("FBS - Vertretungsplan"), login);
+
+        this.add(new InfoLine("redirect"));
     }
 
     @Override
