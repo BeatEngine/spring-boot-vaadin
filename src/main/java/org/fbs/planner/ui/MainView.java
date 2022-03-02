@@ -87,7 +87,7 @@ public class MainView extends VerticalLayout
     {
         service = MainService.getInstance();
         defineScript();
-
+        this.addClassName("no-padding");
         add(new NavBar(defineNavBarContent()));
 
         add(new Vertretungsplan());
