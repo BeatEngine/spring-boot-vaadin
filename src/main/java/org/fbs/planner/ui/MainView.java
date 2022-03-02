@@ -9,6 +9,7 @@ import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Header;
 import com.vaadin.flow.dom.Element;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.fbs.planner.DefinitionPaths;
 import org.fbs.planner.ui.general.ComponentJS;
@@ -22,7 +23,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Route
+@PageTitle("FBS - Vertretungsplaner")
+@Route("home")
 @CssImport(DefinitionPaths.CSS_DIR+"main.css")
 public class MainView extends AppLayout
 {

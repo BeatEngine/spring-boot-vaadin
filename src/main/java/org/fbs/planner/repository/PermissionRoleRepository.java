@@ -1,15 +1,12 @@
 package org.fbs.planner.repository;
 
-import org.fbs.planner.entity.Permission;
+import org.fbs.planner.entity.PermissionRole;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
-import java.util.List;
-
 @Repository
-public interface  PermissionRoleRepository <T, ID extends Serializable> extends Repository<T, ID>
+public interface PermissionRoleRepository extends JpaRepository<PermissionRole, Long>
 {
 
-    public List<Permission> findPermissionIdByRoleId();
-
+    public long[] findPermissionIdByRoleId(long roleId);
 }

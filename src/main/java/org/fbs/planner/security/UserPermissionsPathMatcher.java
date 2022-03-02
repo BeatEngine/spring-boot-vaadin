@@ -8,7 +8,8 @@
 package org.fbs.planner.security;
 
 import org.fbs.planner.entity.Permission;
-import org.fbs.planner.entity.idclass.RoleUser;
+import org.fbs.planner.entity.RoleUser;
+import org.fbs.planner.entity.idclass.RoleUserId;
 import org.fbs.planner.repository.PermissionRepository;
 import org.fbs.planner.repository.PermissionRoleRepository;
 import org.fbs.planner.repository.RoleUserRepository;
@@ -41,7 +42,7 @@ public class UserPermissionsPathMatcher
 		//Alle RechteIds für alle Rollen, die der User hat.
 		for (final RoleUser roleUser : roles)
 		{
-			final long[] permissionIdByRoleId = permissionRoles.findPermissionIdByRoleId(roleUser.getRole_id());
+			final long[] permissionIdByRoleId = permissionRoles.findPermissionIdByRoleId(roleUser.getRoleId());
 			for (final long pid : permissionIdByRoleId)
 			{
 				permissionIds.add(Long.valueOf(pid));

@@ -104,12 +104,15 @@ public class SessionCookieRequestFilter implements Filter
 			contextPath = "/";
 		}
 		//todo LOGGING bei level info
-		if ("/logout".equals(contextPath) ||
-			 "/login".equals(contextPath) ||
-			 "/favicon.ico".equals(contextPath) ||
-			 contextPath.startsWith("/js/") ||
-			 contextPath.startsWith("/css/") ||
-			 valideSession == false && "/".equals(contextPath))
+		if (contextPath.startsWith("/favicon.ico") || /* Icon */
+				contextPath.startsWith("/VAADIN") || /* Vaadin Requests */
+			contextPath.startsWith("/vaadinServlet") || /* Vaadin Requests */
+			"/".equals(contextPath) && "POST".equals(httpServletRequest.getMethod().toUpperCase()) ||
+			"/logout".equals(contextPath) ||
+			"/login".equals(contextPath) ||
+		 	"/favicon.ico".equals(contextPath) ||
+		 	contextPath.startsWith("/js/") ||
+		 	contextPath.startsWith("/css/") )
 		{
 			//Statischer Kontent
 			chain.doFilter(request, response);
@@ -153,7 +156,7 @@ public class SessionCookieRequestFilter implements Filter
 		try
 		{
 			httpResponse
-				.sendRedirect("/?redirect=" + redirect + "&reason=" + URLEncoder.encode(msg, StandardCharsets.UTF_8));
+				.sendRedirect("/login?reason=" + URLEncoder.encode(msg, StandardCharsets.UTF_8));
 			//httpResponse.setStatus(HttpServletResponse.SC_OK);
 			httpResponse.getOutputStream().print(msg);
 			httpResponse.getOutputStream().flush();

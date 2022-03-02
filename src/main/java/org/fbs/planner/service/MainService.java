@@ -9,7 +9,8 @@ public class MainService
 
     CookieSessionManager sessions;
 
-    public CookieSessionManager getSessions() {
+    public CookieSessionManager getSessions()
+    {
         return sessions;
     }
 }
