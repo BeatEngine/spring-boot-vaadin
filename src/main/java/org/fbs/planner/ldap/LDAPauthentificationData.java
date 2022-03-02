@@ -1,11 +1,10 @@
 /**
  * Title: LDAPauthentificationData.
  * Description:
- * Copyright EDAG Engineering GmbH 2020
  *
- * @author dg79696
+ * @author David
  */
-package com.edag.jira.com.edag.ldap;
+package org.fbs.planner.ldap;
 
 public class LDAPauthentificationData
 {

@@ -1,11 +1,10 @@
 /**
  * Title: LDAPauthenticator.
  * Description:
- * Copyright EDAG Engineering GmbH 2020
  *
- * @author dg79696
+ * @author David
  */
-package com.edag.jira.com.edag.ldap;
+package org.fbs.planner.ldap;
 
 import org.springframework.core.env.Environment;
 
@@ -27,7 +26,7 @@ public class LDAPauthenticator
 	public static String queryUserData(int userPNUM, String ldapServer, String ldapPassword, Environment properties)
 	{
 		String                    result   = null;
-		final String              ldapBase = "cn=public,dc=edag,dc=com";
+		final String              ldapBase = "cn=public,dc=fbs,dc=org";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		if (ldapBase != null)
@@ -50,7 +49,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=edag,dc=com", "(uidnumber=" + userPNUM + ")",
+				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uidnumber=" + userPNUM + ")",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -95,7 +94,7 @@ public class LDAPauthenticator
 	public static String queryUserData(String user, String ldapServer, String ldapPassword, Environment properties)
 	{
 		String                    result   = null;
-		final String              ldapBase = "cn=public,dc=edag,dc=com";
+		final String              ldapBase = "cn=public,dc=fbs,dc=org";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		if (ldapBase != null)
@@ -118,7 +117,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=edag,dc=com", "(uid=" + user + ")",
+				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uid=" + user + ")",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -173,7 +172,7 @@ public class LDAPauthenticator
 	public static List<String> queryUsers(String ldapServer, String ldapPassword, Environment properties)
 	{
 		List<String>              result   = new ArrayList<String>();
-		final String              ldapBase = "cn=public,dc=edag,dc=com";
+		final String              ldapBase = "cn=public,dc=fbs,dc=org";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
 		if (ldapBase != null)
@@ -196,7 +195,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=edag,dc=com", "(uidnumber>=0)",
+				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uidnumber>=0)",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -276,7 +275,7 @@ public class LDAPauthenticator
 	{
 		final LDAPauthentificationData returnData = new LDAPauthentificationData(false, "", "");
 		/* Von rechts nach links --> den Baum absteigen*/
-		final String ldapBase = "cn=public,dc=edag,dc=com";
+		final String ldapBase = "cn=public"; /* ,dc=fbs,dc=org */
 
 		Hashtable<String, Object> env = new Hashtable<String, Object>();
 		env.put(Context.SECURITY_AUTHENTICATION, "simple");
@@ -304,12 +303,14 @@ public class LDAPauthenticator
 
 			NamingEnumeration<SearchResult> useringroup2 = null;
 
-			try
+			returnData.setSuccessfullyAuthenticated(true);
+			return returnData;
+			/*try
 			{
 				useringroup = ctx
-					.search("ou=people,ou=de,dc=edag,dc=com", "(uid=" + username + ")", getSimpleSearchControls());
+					.search("ou=people", "(uid=" + username + ")", getSimpleSearchControls());
 
-				/* Die zweite Verbindung zum LDAP-Server prüft ob der User in der Gruppe ist und ob diese Existiert*/
+				// Die zweite Verbindung zum LDAP-Server prüft ob der User in der Gruppe ist und ob diese Existiert
 				returnData.setSuccessfullyAuthenticated(false);
 				final SearchResult result     = useringroup.next();
 				final Attributes   attributes = result.getAttributes();
@@ -351,7 +352,7 @@ public class LDAPauthenticator
 				returnData.setReasonForFail("user not in LDAP group \"people\" or wrong password");
 				ctx.close();
 				return returnData;
-			}
+			}*/
 		}
 		catch (final NamingException e)
 		{

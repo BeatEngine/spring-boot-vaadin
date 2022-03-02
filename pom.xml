@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>org.fbs</groupId>
 	<artifactId>planner</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1 Test</version>
 	<packaging>war</packaging>
 	<name>planner</name>
 	<description>Planner with Spring Boot</description>

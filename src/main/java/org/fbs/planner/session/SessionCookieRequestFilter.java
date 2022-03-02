@@ -108,6 +108,7 @@ public class SessionCookieRequestFilter implements Filter
 				contextPath.startsWith("/VAADIN") || /* Vaadin Requests */
 			contextPath.startsWith("/vaadinServlet") || /* Vaadin Requests */
 			"/".equals(contextPath) && "POST".equals(httpServletRequest.getMethod().toUpperCase()) ||
+			"/auth".equals(contextPath) && "POST".equals(httpServletRequest.getMethod().toUpperCase()) ||
 			"/logout".equals(contextPath) ||
 			"/login".equals(contextPath) ||
 		 	"/favicon.ico".equals(contextPath) ||

@@ -37,7 +37,7 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        login.setAction("login");
+        login.setAction("auth");
 
 
         add(new H1("FBS - Vertretungsplan"), login);
