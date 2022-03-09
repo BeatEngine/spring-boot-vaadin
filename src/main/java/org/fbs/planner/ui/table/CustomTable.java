@@ -42,6 +42,63 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
         }
     }
 
+    public Tr getHeadRow(int index)
+    {
+        final Stream<Component> children = head.getChildren();
+        final Iterator<Component> iterator = children.iterator();
+        for(int i = 0; i <= index && iterator.hasNext(); i++)
+        {
+            final Component next = iterator.next();
+            if(i == index)
+            {
+                return (Tr)next;
+            }
+        }
+        return null;
+    }
+
+    public Tr getBodyRow(int index)
+    {
+        final Stream<Component> children = body.getChildren();
+        final Iterator<Component> iterator = children.iterator();
+        for(int i = 0; i <= index && iterator.hasNext(); i++)
+        {
+            final Component next = iterator.next();
+            if(i == index)
+            {
+                return (Tr)next;
+            }
+        }
+        return null;
+    }
+
+    public Td getBodyCell(int x, int y)
+    {
+        final Stream<Component> children = body.getChildren();
+        final Iterator<Component> iterator = children.iterator();
+        for(int i = 0; i <= y && iterator.hasNext(); i++)
+        {
+            final Component next = iterator.next();
+            if(i == y)
+            {
+                final Tr row = (Tr)next;
+                final Stream<Component> cells = row.getChildren();
+                final Iterator<Component> iter = cells.iterator();
+
+                for(int c = 0; c <= x && iter.hasNext(); c++)
+                {
+                    final Component nxt = iter.next();
+                    if(c == x)
+                    {
+                        return (Td)nxt;
+                    }
+                }
+                return null;
+            }
+        }
+        return null;
+    }
+
     public void addHeadRow()
     {
         head.add(new Tr());
@@ -62,10 +119,8 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
             final Component next = iterator.next();
             if(next instanceof Tr)
             {
-                //head.remove(next);
-                Tr cur = (Tr)next;
+                final Tr cur = (Tr)next;
                 cur.add(new Th());
-                //head.addComponentAtIndex(idx, cur);
             }
             idx++;
         }
@@ -81,10 +136,8 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
             final Component next = iterator.next();
             if(next instanceof Tr)
             {
-                //body.remove(next);
-                Tr cur = (Tr)next;
+                final Tr cur = (Tr)next;
                 cur.add(new Td());
-                //body.addComponentAtIndex(idx, cur);
             }
             idx++;
         }
