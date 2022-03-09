@@ -99,7 +99,7 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
         return null;
     }
 
-    public Td getHeadCell(int x, int y)
+    public Th getHeadCell(int x, int y)
     {
         final Stream<Component> children = head.getChildren();
         final Iterator<Component> iterator = children.iterator();
@@ -117,7 +117,7 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
                     final Component nxt = iter.next();
                     if(c == x)
                     {
-                        return (Td)nxt;
+                        return (Th)nxt;
                     }
                 }
                 return null;
@@ -170,4 +170,9 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
         }
     }
 
+    @Override
+    public String toString()
+    {
+        return "<table>\n" + head.toString() + "\n" + body.toString() + "\n</table>";
+    }
 }

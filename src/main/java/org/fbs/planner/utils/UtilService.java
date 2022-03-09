@@ -7,6 +7,8 @@
  */
 package org.fbs.planner.utils;
 
+import com.vaadin.flow.component.Component;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -16,9 +18,37 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class UtilService
 {
+
+	public static String toHTML(Component c)
+	{
+		String ret = "";
+		String tag = c.getElement().getTag();
+		String attributes = "";
+		Stream<String> atts = c.getElement().getAttributeNames();
+		Iterator<String> atti = atts.iterator();
+		while (atti.hasNext())
+		{
+			final String key = atti.next();
+			String attribute = c.getElement().getAttribute(key);
+			attribute += " " + key + "=\"" + attribute + "\"";
+		}
+		ret += "<" +tag + attributes + ">\n";
+		ret += c.getElement().getText();
+		Stream<Component> children = c.getChildren();
+		Iterator<Component> iterator = children.iterator();
+		while (iterator.hasNext())
+		{
+			ret += toHTML(iterator.next());
+		}
+
+		ret += "</" +tag + ">";
+		return ret;
+	}
+
 	/**
 	 * Umwandelung url http request parameter in Map
 	 * @param request "?a=1&b=2&c=345

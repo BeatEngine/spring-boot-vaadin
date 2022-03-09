@@ -1,8 +1,49 @@
+.head-table
+{
+    margin-left:50px;
+    border: solid 1px black;
+    height: 10vh;
+    width: 90vw;
+    border-collapse: collapse;
+}
+.head-table > tbody
+{
+    width: 100%;
+}
+.head-table > thead
+{
+    width: 100%;
+}
+.head-table > tbody > tr
+{
+    border: solid 1px black;
+    width: 100%;
+}
+.head-table > thead > tr
+{
+    border: solid 1px black;
+    width: 100%;
+}
+.head-table > tbody > tr > *
+{
+    display:table-cell;
+    border: solid 1px black;
+    border-right-width: 2px;
+    border-left-width: 2px;
+    font-size: 12pt;
+}
+.head-table > thead > tr > th
+{
+    border: solid 1px black;
+    font-size: 16pt;
+    width: 14%;
+}
 
 .main-table
 {
+    margin-left:50px;
     border: solid 1px black;
-    height: 80vh;
+    height: 78vh;
     width: 90vw;
     border-collapse: collapse;
 }
