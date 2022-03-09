@@ -4,6 +4,8 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Div;
 import org.fbs.planner.DefinitionPaths;
 
+import java.time.LocalDate;
+
 @CssImport(DefinitionPaths.CSS_DIR+"table.css")
 public class Vertretungsplan extends Div
 {
@@ -19,25 +21,18 @@ public class Vertretungsplan extends Div
         table.addHeadRow();
         table.addHeadRow();
         table.addHeadRow();
+        table.addHeadRow();
         for(int i = 0; i < collumnSize; i++)
         {
             table.addHeadColumn();
         }
         table.addClassName("main-table");
         add(table);
-        initForm();
+        initForm(LocalDate.now().toString());
     }
 
-    private void initForm()
+    private void initForm(final String date)
     {
-        for(int i = 0; i < 16; i++)
-        {
-            table.addBodyRow();
-        }
-        for(int i = 0; i < collumnSize; i++)
-        {
-            table.addBodyColumn();
-        }
         int lineNumber = 1;
         for(int i = 0; i < 16; i++)
         {
@@ -56,6 +51,13 @@ public class Vertretungsplan extends Div
                 table.getBodyCell(0, i).setText("Abendunterricht");
             }
         }
+        table.getHeadCell(0,3).setText("Stunden");
+        table.getHeadCell(1,3).setText("Montag " + date);
+        table.getHeadCell(2,3).setText("Dienstag " + date);
+        table.getHeadCell(3,3).setText("Mittwoch " + date);
+        table.getHeadCell(4,3).setText("Donnerstag " + date);
+        table.getHeadCell(5,3).setText("Freitag " + date);
+
 
 
     }

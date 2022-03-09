@@ -99,6 +99,33 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
         return null;
     }
 
+    public Td getHeadCell(int x, int y)
+    {
+        final Stream<Component> children = head.getChildren();
+        final Iterator<Component> iterator = children.iterator();
+        for(int i = 0; i <= y && iterator.hasNext(); i++)
+        {
+            final Component next = iterator.next();
+            if(i == y)
+            {
+                final Tr row = (Tr)next;
+                final Stream<Component> cells = row.getChildren();
+                final Iterator<Component> iter = cells.iterator();
+
+                for(int c = 0; c <= x && iter.hasNext(); c++)
+                {
+                    final Component nxt = iter.next();
+                    if(c == x)
+                    {
+                        return (Td)nxt;
+                    }
+                }
+                return null;
+            }
+        }
+        return null;
+    }
+
     public void addHeadRow()
     {
         head.add(new Tr());
