@@ -79,14 +79,17 @@ public class Vertretungsplan extends Div
         name.setText("Name:");
         name.setWidth("33.3333%");
         name.getStyle().set("display", "inline-block");
+        name.getStyle().set("text-align","left");
         Span von = new Span();
         von.setText("Von:");
         von.setWidth("33.3333%");
         von.getStyle().set("display", "inline-block");
+        von.getStyle().set("text-align","left");
         Span bis = new Span();
         bis.setText("Bis:");
         bis.setWidth("33.3333%");
         bis.getStyle().set("display", "inline-block");
+        bis.getStyle().set("text-align","left");
         headreason.add(name);
         headreason.add(von);
         headreason.add(bis);
@@ -96,7 +99,7 @@ public class Vertretungsplan extends Div
         headTable.getHeadRow(2).add(new Th());
         headTable.getHeadRow(2).add(new Th());
         headTable.getHeadCell(0, 2).setWidth("70%");
-        headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:\n\nKlasse:          (Belege, wie Einladungen usw. anhängen)");
+        headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:\n\nKlasse:̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲ ̲  (Belege, wie Einladungen usw. anhängen)");
         headTable.getHeadCell(0, 2).getStyle().set("white-space","pre-line");
         headTable.getHeadCell(0, 2).getStyle().set("width","100%");
         headTable.getHeadCell(0, 2).getStyle().set("text-align","left");
