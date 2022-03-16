@@ -6,6 +6,16 @@
     width: 90vw;
     border-collapse: collapse;
 }
+
+.form-input
+{
+    font-size:14pt;
+    width: 24%;
+    border: none;
+    border-bottom: solid 2px black;
+}
+
+
 .head-table > tbody
 {
     width: 100%;
