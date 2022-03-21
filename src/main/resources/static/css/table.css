@@ -1,20 +1,37 @@
+.table-scroll-head
+{
+    display: relative;
+    height: 23vh;
+    width: 93vw;
+    overflow-x:auto;
+    overflow-y:none;
+ }
 .head-table
 {
     margin-left:50px;
     border: solid 1px black;
-    height: 10vh;
-    width: 90vw;
+    height: 100%;
+    width: 96.8%;
     border-collapse: collapse;
 }
 
 .form-input
 {
-    font-size:14pt;
+    font-size: 14pt;
     width: 24%;
     border: none;
     border-bottom: solid 2px black;
 }
 
+.cell-input
+{
+    font-size: 2vmin;
+    border: none;
+    min-width: 13.6vw;
+    min-height: 25px;
+    padding: 0;
+    margin: 0;
+}
 
 .head-table > tbody
 {
@@ -45,16 +62,23 @@
 .head-table > thead > tr > th
 {
     border: solid 1px black;
-    font-size: 16pt;
+    font-size: 2vmin;
     width: 14%;
 }
-
+.table-scroll
+{
+    display: relative;
+    height: 70vh;
+    width: 93vw;
+    overflow-x:auto;
+    overflow-y:auto;
+ }
 .main-table
 {
     margin-left:50px;
     border: solid 1px black;
-    height: 70vh;
-    width: 90vw;
+    height: 100%;
+    width: 96.8%;
     border-collapse: collapse;
 }
 .main-table > tbody
@@ -81,11 +105,11 @@
     border: solid 1px black;
     border-right-width: 2px;
     border-left-width: 2px;
-    font-size: 12pt;
+   font-size: 2vmin;
 }
 .main-table > thead > tr > th
 {
     border: solid 1px black;
-    font-size: 16pt;
-    width: 14%;
+    font-size: 2.2vmin;
+    width: 14vw;
 }

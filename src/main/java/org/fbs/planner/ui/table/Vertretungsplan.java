@@ -5,6 +5,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.Span;
 import org.fbs.planner.DefinitionPaths;
+import org.fbs.planner.ui.table.components.CellInput;
 import org.fbs.planner.ui.table.components.Th;
 import org.fbs.planner.utils.UtilService;
 
@@ -39,8 +40,14 @@ public class Vertretungsplan extends Div
         }
         table.addClassName("main-table");
         headTable.addClassName("head-table");
-        add(headTable);
-        add(table);
+        final Div tableWrapperHead = new Div();
+        tableWrapperHead.setClassName("table-scroll-head");
+        tableWrapperHead.add(headTable);
+        add(tableWrapperHead);
+        final Div tableWrapper = new Div();
+        tableWrapper.setClassName("table-scroll");
+        tableWrapper.add(table);
+        add(tableWrapper);
         initForm();
     }
 
@@ -64,6 +71,13 @@ public class Vertretungsplan extends Div
             else
             {
                 table.getBodyCell(0, i).setText("Abendunterricht");
+            }
+            if(i != 11)
+            {
+                for(int x = 1; x < 7; x++)
+                {
+                    table.getBodyCell(x, i).add(new CellInput("cell-"+x+"-"+i, "cell-input", "height: 20px;"));
+                }
             }
         }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
@@ -91,6 +105,8 @@ public class Vertretungsplan extends Div
         name.getStyle().set("display", "inline-block");
         name.getStyle().set("text-align","center");
         Input nameInp = new Input();
+        nameInp.getElement().setAttribute("name", "name-antragsteller");
+        nameInp.setId("name-antragsteller");
         nameInp.setClassName("form-input");
         Span von = new Span();
         von.setText("Von:");
@@ -98,6 +114,8 @@ public class Vertretungsplan extends Div
         von.getStyle().set("display", "inline-block");
         von.getStyle().set("text-align","center");
         Input vonInp = new Input();
+        vonInp.getElement().setAttribute("name", "anfang-antrag");
+        vonInp.setId("anfang-antrag");
         vonInp.setClassName("form-input");
         vonInp.setType("date");
         vonInp.setValue(monday);
@@ -108,6 +126,8 @@ public class Vertretungsplan extends Div
         bis.getStyle().set("display", "inline-block");
         bis.getStyle().set("text-align","center");
         Input bisInp = new Input();
+        bisInp.getElement().setAttribute("name", "ende-antrag");
+        bisInp.setId("ende-antrag");
         bisInp.setClassName("form-input");
         bisInp.setType("date");
         bisInp.setValue(monday);
@@ -126,6 +146,8 @@ public class Vertretungsplan extends Div
         headTable.getHeadCell(0, 2).setWidth("50%");
         headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:\n\nKlasse: ");
         Input classInp = new Input();
+        classInp.getElement().setAttribute("name", "klasse-antrag");
+        classInp.setId("klasse-antrag");
         classInp.setClassName("form-input");
         Span restText = new Span();
         restText.setText("(Belege, wie Einladungen usw. anhängen)");
@@ -135,6 +157,7 @@ public class Vertretungsplan extends Div
         headTable.getHeadCell(0, 2).getStyle().set("white-space","pre-line");
         headTable.getHeadCell(0, 2).getStyle().set("width","47%");
         headTable.getHeadCell(0, 2).getStyle().set("text-align","left");
+        headTable.getHeadCell(1, 2).getStyle().set("width","53%");
         Div vermerk = new Div();
         vermerk.setText("Genehmigungsvermerke mit Datum:");
         vermerk.setHeight("33.3333%");
@@ -144,6 +167,8 @@ public class Vertretungsplan extends Div
         vermerk.getStyle().set("width","100%");
         vermerk.getStyle().set("text-align","left");
         Input vermerkInp = new Input();
+        vermerkInp.getElement().setAttribute("name", "vermerk-antrag");
+        vermerkInp.setId("vermerk-antrag");
         vermerkInp.setClassName("form-input");
         Div abteilungsleiter = new Div();
         abteilungsleiter.setText("Abteilungsleiter/in:");
@@ -154,6 +179,8 @@ public class Vertretungsplan extends Div
         abteilungsleiter.getStyle().set("width","100%");
         abteilungsleiter.getStyle().set("text-align","left");
         Input abteilungsleiterInp = new Input();
+        abteilungsleiterInp.getElement().setAttribute("name", "abteilungsleiter-antrag");
+        abteilungsleiterInp.setId("abteilungsleiter-antrag");
         abteilungsleiterInp.setClassName("form-input");
         Div schulleitung = new Div();
         schulleitung.setText("Schulleitung:");
@@ -164,6 +191,8 @@ public class Vertretungsplan extends Div
         schulleitung.getStyle().set("width","100%");
         schulleitung.getStyle().set("text-align","left");
         Input schulleitungInp = new Input();
+        schulleitungInp.getElement().setAttribute("name", "schulleitung-antrag");
+        schulleitungInp.setId("schulleitung-antrag");
         schulleitungInp.setClassName("form-input");
 
         vermerk.add(vermerkInp);

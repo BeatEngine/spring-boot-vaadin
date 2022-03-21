@@ -62,9 +62,9 @@ public class MainView extends VerticalLayout
         final ArrayList<Component> elements = new ArrayList<>();
         //Definition der Abschnitte in der Navigationsleiste
 
-        elements.add(new NavBarElement("Home","link('/home')"));
+        /*elements.add(new NavBarElement("Home","link('/home')"));
         elements.add(new NavBarElement("Tab 2","link('/tab2')"));
-        elements.add(new NavBarElement("Tab 3 ...","link('/tab3')"));
+        elements.add(new NavBarElement("Tab 3 ...","link('/tab3')"));*/
 
         Cookie[] cookies = VaadinService.getCurrentRequest().getCookies();
 
