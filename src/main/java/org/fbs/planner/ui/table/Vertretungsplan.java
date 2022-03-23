@@ -93,7 +93,7 @@ public class Vertretungsplan extends Div
         headTable.getHeadRow(0).removeAll();
         Th title = new Th();
         title.setText("Vertretungsplan / Abwesenheitsmeldung");
-        title.getStyle().set("font-size","24pt");
+        title.getStyle().set("font-size","3vm");
         title.setWidth("47%");
         headTable.getHeadRow(0).add(title);
         headTable.getHeadRow(1).removeAll();
