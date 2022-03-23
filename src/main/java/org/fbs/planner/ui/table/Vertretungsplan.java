@@ -139,18 +139,34 @@ public class Vertretungsplan extends Div
         headreason.add(bis);
         headreason.add(bisInp);
         headTable.getHeadRow(1).add(headreason);
-
         headTable.getHeadRow(2).removeAll();
         headTable.getHeadRow(2).add(new Th());
         headTable.getHeadRow(2).add(new Th());
         headTable.getHeadCell(0, 2).setWidth("50%");
-        headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:\n\nKlasse: ");
+        headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:");
+
+        final Th kopfZelleActions = new Th();
+        kopfZelleActions.add(new CustomButton("Entwurf Speichern", "table-button tbtn-save", "button-speichern", "entwurfSpeichern();"));
+        kopfZelleActions.add(new CustomButton("Antrag veröffentlichen", "table-button tbtn-publish", "button-beantragen", "entwurfBeantragen();"));
+        kopfZelleActions.add(new CustomButton("Entwurf entfernen", "table-button tbtn-abbort", "button-entfernen", "entwurfEntfernen();"));
+        headTable.getHeadRow(0).add(kopfZelleActions);
+
+        Input reasonInp = new Input();
+        reasonInp.getElement().setAttribute("name", "grund-antrag");
+        reasonInp.setId("grund-antrag");
+        reasonInp.setClassName("form-input");
+        reasonInp.getStyle().set("width", "50%");
+
         Input classInp = new Input();
         classInp.getElement().setAttribute("name", "klasse-antrag");
         classInp.setId("klasse-antrag");
         classInp.setClassName("form-input");
         Span restText = new Span();
         restText.setText("(Belege, wie Einladungen usw. anhängen)");
+        headTable.getHeadCell(0, 2).add(reasonInp);
+        Span midText = new Span();
+        midText.setText("\n\nKlasse: ");
+        headTable.getHeadCell(0, 2).add(midText);
         headTable.getHeadCell(0, 2).add(classInp);
         headTable.getHeadCell(0, 2).add(restText);
 

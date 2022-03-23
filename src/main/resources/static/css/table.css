@@ -1,3 +1,36 @@
+.table-button
+{
+    height: 27px;
+    font-size: 2vmin;
+    cursor: pointer;
+    margin: 5px;
+    font-family: Arial;
+    border: solid 1px transparent;
+}
+
+.table-button:hover
+{
+    border: solid 1px green;
+}
+
+.tbtn-save
+{
+    background-color: PaleTurquoise;
+    border-block-color: azure;
+}
+
+.tbtn-publish
+{
+    background-color: yellowgreen;
+    border-block-color: silver;
+}
+
+.tbtn-abbort
+{
+    background-color: lightsalmon;
+    border-color: burlywood;
+}
+
 .table-scroll-head
 {
     display: relative;
@@ -17,7 +50,7 @@
 
 .form-input
 {
-    font-size: 14pt;
+    font-size: 2vmin;
     width: 24%;
     border: none;
     border-bottom: solid 2px black;

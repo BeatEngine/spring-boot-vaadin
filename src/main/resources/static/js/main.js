@@ -1,42 +1,38 @@
 /* This is useful for tomcat applications server.xy/applicationname/home */
 var applicationname = ".";
 
-/** Asynchrone Javascript Request - Aufruf der ServerMethode
- * @Param method anfordernde HTTP-Methode, wie GET und POST
- * @Param url wie "domain"/Pfad
- * @Param body Alles was im HTTP-Body steht
- * @Param onloadCallback eine JavaScriptmethode, die nach dem asyncRequest aufgerufen wird
- * @Param size Größe des Bodys
- * @Param contenttype der beschreibende Typ des Inhalts
- * */
-function asyncRequest(method, url, body, onloadCallback, size = 0, contenttype = "")
-{
-    var xhr = new XMLHttpRequest();
-
-    xhr.open(method,"/"+applicationname+url, true);
-    if(contenttype.length > 0)
-    {
-        xhr.overrideMimeType(contenttype);
-        xhr.setRequestHeader("Content-Type", contenttype);
-        //xhr.overrideMimeType(contenttype);
-    }
-
-    //alert("Size:"+size);
-
-    if(size > 0) {
-        xhr.setRequestHeader("Content-Length", size.toString());
-        xhr.setRequestHeader("Real-Shit-Size", size.toString());
-    }
-
-
-    xhr.onload = onloadCallback;
-    xhr.send(body);
-}
-
 function link(url)
 {
     document.location = url;
 }
+
+function entwurfSpeichern()
+{
+    var inputs = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("input");
+    var body = "";
+    for(var i = 0; i < inputs.length; i++)
+    {
+        var inp = inputs[i];
+        if(i > 0)
+        {
+            body += "&";
+        }
+        body += inp.name + "=" + encodeURIComponent(inp.value);
+    }
+    asyncRequest("POST", "/table/save", body, function tmp(){pushNotification("Entwurf gespeichert!", "Der Entwurf wurde gespeichert!")});
+}
+
+function entwurfBeantragen()
+{
+    entwurfSpeichern();
+
+}
+
+function entwurfEntfernen()
+{
+
+}
+
 
 /**
  * HTML aus Response in gesuchtes Element einsetzen.
@@ -326,8 +322,8 @@ function removeThisModal(element)
 
 function pushNotification(title, text, duration = 3000)
 {
-    var code = "<div aria-live=\"polite\" aria-atomic=\"true\" style=\"position: relative; min-height: 200px;\">\n" +
-        "  <div class=\"toast\" style=\"position: absolute; top: 0; right: 0;\">\n" +
+    var code = "<div aria-live=\"polite\" aria-atomic=\"true\" style=\"position: absolute; min-height: 200px;\">\n" +
+        "  <div class=\"toast\" style=\"position: absolute; top: 0; right: 0; z-index: 99999;\">\n" +
         "    <div class=\"toast-header\">\n" +
         "      <img src=\"...\" class=\"rounded mr-2\" alt=\"...\">\n" +
         "      <strong class=\"mr-auto\">"+title+"</strong>\n" +

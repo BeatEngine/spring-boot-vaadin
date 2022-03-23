@@ -49,6 +49,7 @@ public class MainView extends VerticalLayout
     {
         var ui = UI.getCurrent();
         var page = ui.getPage();
+        page.addJavaScript(DefinitionPaths.JS_DIR + "javascriptUtils.js");
         page.addJavaScript(DefinitionPaths.JS_DIR + "main.js");
 
     }
