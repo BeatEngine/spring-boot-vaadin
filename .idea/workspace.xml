@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8a6d8dd9-100e-4fc7-bbe9-51821c0e998b" name="Default Changelist" comment="New Runner for Spring.">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-vaadin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/entity/Antrag.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/entity/Cell.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/repository/AntragRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/repository/CellRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/service/HomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/service/HomeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/service/MainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/service/MainService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/CookieSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/CookieSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/CookieSessionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/CookieSessionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/SessionCookieRequestFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/session/SessionCookieRequestFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\IntelliJ IDEA 2020.2.4\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="25BnPlQF9A8Aq0MtWcSY9RSxqWc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jrdp-java-DaaS" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package site:jar" />
+    </option>
+  </component>
+  <component name="RunManager" selected="JAR Application.Runner">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Runner" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/planner-1.0.1 Test.war" />
+      <option name="WORKING_DIRECTORY" value="D:\spring-boot-vaadin" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Maven.BeforeRunTask" enabled="true" file="$PROJECT_DIR$/pom.xml" goal="clean package" />
+      </method>
+    </configuration>
+    <configuration name="Run" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="spring-boot:run" />
+                <option value="--debug" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="PlannerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="planner" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.fbs.planner.PlannerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JAR Application.Runner" />
+      <item itemvalue="Maven.Run" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a6d8dd9-100e-4fc7-bbe9-51821c0e998b" name="Default Changelist" comment="" />
+      <created>1645009326108</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1645009326108</updated>
+      <workItem from="1645009327156" duration="1001000" />
+    </task>
+    <task id="LOCAL-00001" summary="LDAP">
+      <created>1646218564011</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1646218564011</updated>
+    </task>
+    <task id="LOCAL-00002" summary="LDAP Vorbereitung.">
+      <created>1646221117783</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646221117783</updated>
+    </task>
+    <task id="LOCAL-00003" summary="LDAP Vorbereitung.">
+      <created>1646221750960</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646221750960</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Tabelle Vertretungsplaner vorbereitung.">
+      <created>1646229006203</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646229006203</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Style angepasst.">
+      <created>1646229141105</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646229141105</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Style angepasst.">
+      <created>1646811857614</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646811857614</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Style angepasst.">
+      <created>1646814649530</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646814649530</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Aufbau Tabelle.">
+      <created>1646826391488</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1646826391488</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Aufbau Tabelle.">
+      <created>1646826877479</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1646826877479</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Inputboxen Design.">
+      <created>1647430788503</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1647430788503</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Tabelle Scrollable.&#10;Input für Zellen.">
+      <created>1647850894049</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1647850894049</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Tabelle Scrollable.&#10;Input für Zellen.">
+      <created>1648020130669</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1648020130669</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Buttons">
+      <created>1648036704197</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1648036704197</updated>
+    </task>
+    <task id="LOCAL-00014" summary="New Runner for Spring.">
+      <created>1649238668593</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1649238668593</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="LDAP" />
+    <MESSAGE value="LDAP Vorbereitung." />
+    <MESSAGE value="Tabelle Vertretungsplaner vorbereitung." />
+    <MESSAGE value="Style angepasst." />
+    <MESSAGE value="Aufbau Tabelle." />
+    <MESSAGE value="Inputboxen Design." />
+    <MESSAGE value="Tabelle Scrollable.&#10;Input für Zellen." />
+    <MESSAGE value="Buttons" />
+    <MESSAGE value="New Runner for Spring." />
+    <option name="LAST_COMMIT_MESSAGE" value="New Runner for Spring." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/fbs/planner/ldap/LDAPauthenticator.java</url>
+          <line>300</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

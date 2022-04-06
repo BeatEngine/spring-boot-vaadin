@@ -9,13 +9,26 @@ function link(url)
 function entwurfSpeichern()
 {
     var inputs = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("input");
+    var textboxes = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("textarea");
     var body = "";
+    var p = 0;
     for(var i = 0; i < inputs.length; i++)
     {
         var inp = inputs[i];
         if(i > 0)
         {
             body += "&";
+            p++;
+        }
+        body += inp.name + "=" + encodeURIComponent(inp.value);
+    }
+    for(var i = 0; i < textboxes.length; i++)
+    {
+        var inp = textboxes[i];
+        if(p > 0)
+        {
+            body += "&";
+            p++;
         }
         body += inp.name + "=" + encodeURIComponent(inp.value);
     }

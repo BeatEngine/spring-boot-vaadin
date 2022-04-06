@@ -38,10 +38,10 @@ public class HomeController
         return service.home();
     }*/
 
-    @PostMapping("/save")
-    public ModelAndView index(@RequestBody final String input)
+    @PostMapping("/table/save")
+    public ModelAndView save(@RequestBody final String input, @CookieValue("session") String session)
     {
-        return homeService.save(UtilService.processRequestValuesByStringSTD(input, true));
+        return homeService.save(UtilService.processRequestValuesByStringSTD(input, true), session);
     }
 
     @PostMapping("/auth")

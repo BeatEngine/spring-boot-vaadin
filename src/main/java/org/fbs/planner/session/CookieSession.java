@@ -70,6 +70,13 @@ public class CookieSession
 
 	private String username;
 
+	private Long userId;
+
+	public void setUserId(Long userId)
+	{
+		this.userId = userId;
+	}
+
 	private String displayName = "";
 
 	private LocalTime createdAt;
@@ -160,4 +167,8 @@ public class CookieSession
 		updatedAt = LocalTime.now();
 	}
 
+	public Long getUserId()
+	{
+		return userId;
+	}
 }

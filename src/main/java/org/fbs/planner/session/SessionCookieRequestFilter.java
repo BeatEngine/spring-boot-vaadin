@@ -126,11 +126,11 @@ public class SessionCookieRequestFilter implements Filter
 			}
 			else
 			{
-
+				//todo implementieren!!!
+				final long currentUserId = 0;
 				//Prüfung der Rechte des Users --> Auf welche URLs darf er zugreifen bzw. nicht zugreifen?
-				final UserPermissionsPathMatcher pathPermissions = new UserPermissionsPathMatcher(
-						service.getSessions().getUserId(),
-						userRoles, permissions,
+				final UserPermissionsPathMatcher pathPermissions = new UserPermissionsPathMatcher(currentUserId, userRoles,
+						permissions,
 						permissionRoles);
 				if (pathPermissions.userHasPermissionFor(contextPath))
 				{

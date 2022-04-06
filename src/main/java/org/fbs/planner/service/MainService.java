@@ -50,7 +50,8 @@ public class MainService
         final String paswd = password;
 
         String sid = sessions.newSession();
-        sessions.setAccount(username, sid);
+        //todo User implementieren!!!
+        sessions.setAccount(username, sid, 0);
         sessions.logIn(sid);
         sessions.setDisplayName(displayName, sid);
         sessions.setPassword(password, sid);

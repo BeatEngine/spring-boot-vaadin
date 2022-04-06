@@ -228,13 +228,14 @@ public class CookieSessionManager
 	 *
 	 * @return false means the session doesn't exist.
 	 */
-	public boolean setAccount(String user, String id)
+	public boolean setAccount(String user, String id, long userId)
 	{
 		for (int i = 0; i < sessions.size(); i++)
 		{
 			if (id.equals(sessions.get(i).getId()))
 			{
 				sessions.get(i).setUsername(user);
+				sessions.get(i).setUserId(userId);
 				return true;
 			}
 		}
@@ -320,9 +321,15 @@ public class CookieSessionManager
 		}
 	}
 
-	public long getUserId()
+	public Long getUserId(String id)
 	{
-		//todo implement
-		return 0;
+		for (int i = 0; i < sessions.size(); i++)
+		{
+			if (id.equals(sessions.get(i).getId()))
+			{
+				return sessions.get(i).getUserId();
+			}
+		}
+		return null;
 	}
 }
