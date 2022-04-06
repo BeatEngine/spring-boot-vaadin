@@ -26,6 +26,9 @@ public class HomeController
     MainService service;
 
     @Autowired
+    HomeService homeService;
+
+    @Autowired
     private Environment properties;
 
 
@@ -34,6 +37,12 @@ public class HomeController
     {
         return service.home();
     }*/
+
+    @PostMapping("/save")
+    public ModelAndView index(@RequestBody final String input)
+    {
+        return homeService.save(UtilService.processRequestValuesByStringSTD(input, true));
+    }
 
     @PostMapping("/auth")
     public ModelAndView index(@RequestBody final String input, final HttpServletRequest request, final HttpServletResponse response)
