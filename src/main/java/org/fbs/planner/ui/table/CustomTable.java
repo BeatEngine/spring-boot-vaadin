@@ -20,6 +20,7 @@ public class CustomTable extends com.vaadin.flow.component.HtmlContainer impleme
         add(body);
     }
 
+
     public CustomTable(final int width, final int height, boolean head)
     {
         add(this.head);

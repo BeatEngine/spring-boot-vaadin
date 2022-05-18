@@ -9,11 +9,13 @@ public class CustomButton  extends com.vaadin.flow.component.HtmlContainer imple
 
     }
 
+
     public CustomButton(final String text, final String className)
     {
         this.setText(text);
         this.setClassName(className);
     }
+
 
     public CustomButton(final String text,final String className, final String id)
     {
@@ -21,6 +23,7 @@ public class CustomButton  extends com.vaadin.flow.component.HtmlContainer imple
         this.setClassName(className);
         this.setId(id);
     }
+
 
     public CustomButton(final String text,final String className, final String id, final String onclick)
     {

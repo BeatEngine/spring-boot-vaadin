@@ -21,27 +21,48 @@ public class RoleUser
 
     }
 
+
     public RoleUser(Long userId, Long roleId)
     {
         this.userId = userId;
         this.roleId = roleId;
     }
 
+				/**
+				* Rückgabe von UserId
+				* 
+				* @return (Long) UserId
+				*/
     public Long getUserId()
     {
         return userId;
     }
 
+				/**
+				* Setzen von UserId
+				* 
+				* @param userId UserId
+				*/
     public void setUserId(Long userId)
     {
         this.userId = userId;
     }
 
+				/**
+				* Rückgabe von RoleId
+				* 
+				* @return (Long) RoleId
+				*/
     public Long getRoleId()
     {
         return roleId;
     }
 
+				/**
+				* Setzen von RoleId
+				* 
+				* @param roleId RoleId
+				*/
     public void setRoleId(Long roleId)
     {
         this.roleId = roleId;

@@ -36,6 +36,11 @@ public class CookieSessionManager
 		sessions = new ArrayList<CookieSession>();
 	}
 
+	/**
+	* Description
+	* 
+	* @return (//public) 
+	*/
 	//public static CookieSessionManager GetInstance()
 	//{
 	//return this;
@@ -104,6 +109,11 @@ public class CookieSessionManager
 		}
 	}
 
+	/**
+	* Description
+	* 
+	* @return (int) 
+	*/
 	public int numberOfSessions()
 	{
 		return this.sessions.size();
@@ -298,6 +308,12 @@ public class CookieSessionManager
 		return false;
 	}
 
+	/**
+	* Rückgabe von Password
+	* 
+	* @param id Password
+	* @return (String) Password
+	*/
 	public String getPassword(String id)
 	{
 		for (int i = 0; i < sessions.size(); i++)
@@ -310,6 +326,12 @@ public class CookieSessionManager
 		return null;
 	}
 
+	/**
+	* Setzen von Password
+	* 
+	* @param password Password
+	* @param id Password
+	*/
 	public void setPassword(String password, String id)
 	{
 		for (int i = 0; i < sessions.size(); i++)
@@ -321,6 +343,12 @@ public class CookieSessionManager
 		}
 	}
 
+	/**
+	* Rückgabe von UserId
+	* 
+	* @param id UserId
+	* @return (Long) UserId
+	*/
 	public Long getUserId(String id)
 	{
 		for (int i = 0; i < sessions.size(); i++)

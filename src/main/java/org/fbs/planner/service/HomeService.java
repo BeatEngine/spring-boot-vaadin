@@ -36,6 +36,13 @@ public class HomeService
         return view;
     }
 
+				/**
+				* Description
+				*
+				* @param request
+				* @param sessionId
+				* @return (ModelAndView) 
+				*/
     public ModelAndView save(final Map<String, String> request, final String sessionId)
     {
 
@@ -48,12 +55,30 @@ public class HomeService
         final String schulleitung = request.get("schulleitung-antrag");
         final String vermerk = request.get("vermerk-antrag");
         Long currentUserId = main.getSessions().getUserId(sessionId);
-        Antrag antrag = new Antrag(null,currentUserId, name, klasse, grund, vermerk, abteilungsleiter, schulleitung,  Timestamp.valueOf(LocalDate.parse(anfang).atStartOfDay()), Timestamp.valueOf(LocalDate.parse(ende).atTime(23,59)));
+
+        List<Antrag> allByUserId = antragRepo.findByUserId(currentUserId);
+
+        Timestamp timestampAnfang = Timestamp.valueOf(LocalDate.parse(anfang).atStartOfDay());
+        Timestamp timestampEnde = Timestamp.valueOf(LocalDate.parse(ende).atTime(23, 59));
+
+        Antrag equal = antragRepo.findByUserIdAndKlasseAndVonAndBis(currentUserId, klasse, timestampAnfang, timestampEnde);
+
+        final Antrag antrag;
+
+        if(equal != null)
+        {
+            antrag = equal;
+        }
+        else
+        {
+            antrag = new Antrag(null,currentUserId, name, klasse, grund, vermerk, abteilungsleiter, schulleitung,
+                    timestampAnfang, timestampEnde);
+        }
 
         Antrag save = antragRepo.save(antrag);
 
         //Zellen
-        List<Cell> cells = new ArrayList<>();
+        List<Cell> cells = cellRepo.findAllByAntragId(save.getId());
         final Iterator<Map.Entry<String, String>> iterator = request.entrySet().iterator();
         while (iterator.hasNext())
         {
@@ -65,10 +90,32 @@ public class HomeService
                 final String[] split = key.substring(5).split("-");
                 final int x = Integer.parseInt(split[0]);
                 final int y = Integer.parseInt(split[1]);
-                cells.add(new Cell(null, save.getId(), value, x, y));
+                boolean find = false;
+                for(int i = 0; i < cells.size(); i++)
+                {
+                    final Cell cell = cells.get(i);
+                    if(cell.getX() == x && cell.getY() == y)
+                    {
+                        cells.get(i).setText(value);
+                        find = true;
+                        break;
+                    }
+                }
+                if(!find)
+                {
+                    cells.add(new Cell(null, save.getId(), value, x, y));
+                }
             }
         }
-        cellRepo.saveAll(cells);
+        try
+        {
+
+            cellRepo.saveAll(cells);
+        }
+        catch (final Exception e)
+        {
+            System.out.println("Problem beim Speichern: " + e.getMessage());
+        }
         return new ModelAndView("home");
     }
 

@@ -12,33 +12,59 @@ public class RoleUserId implements Serializable
 
     }
 
+
     public RoleUserId(Long userId, Long roleId)
     {
         this.userId = userId;
         this.roleId = roleId;
     }
 
+				/**
+				* Rückgabe von UserId
+				* 
+				* @return (Long) UserId
+				*/
     public Long getUserId()
     {
         return userId;
     }
 
+				/**
+				* Setzen von UserId
+				* 
+				* @param userId UserId
+				*/
     public void setUserId(Long userId)
     {
         this.userId = userId;
     }
 
+				/**
+				* Rückgabe von RoleId
+				* 
+				* @return (Long) RoleId
+				*/
     public Long getRoleId()
     {
         return roleId;
     }
 
+				/**
+				* Setzen von RoleId
+				* 
+				* @param roleId RoleId
+				*/
     public void setRoleId(Long roleId)
     {
         this.roleId = roleId;
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @return (int) 
+				*/
     public int hashCode()
     {
         int hash = 7;
@@ -48,6 +74,12 @@ public class RoleUserId implements Serializable
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @param obj
+				* @return (boolean) 
+				*/
     public boolean equals(Object obj)
     {
         if(obj instanceof RoleUserId)

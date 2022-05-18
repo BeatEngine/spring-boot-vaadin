@@ -13,6 +13,7 @@ public class NavBar extends Div
 
     }
 
+
     public NavBar(List<Component> elements)
     {
         this.setClassName("nav-bar-container");

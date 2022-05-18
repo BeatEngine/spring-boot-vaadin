@@ -35,6 +35,13 @@ public class CookieSession
 		return newd;
 	}
 
+	/**
+	* Description
+	* 
+	* @param key
+	* @param data
+	* @return (byte[]) 
+	*/
 	public static byte[] decryptBlockwise(byte[] key, byte[] data)
 	{
 		byte[] newd = new byte[data.length];
@@ -54,6 +61,12 @@ public class CookieSession
 		return newd;
 	}
 
+	/**
+	* Description
+	* 
+	* @param array
+	* @return (String) 
+	*/
 	public static String byteArrayToString(byte[] array)
 	{
 		String ret = "";
@@ -89,10 +102,16 @@ public class CookieSession
 		return byteArrayToString(decryptBlockwise(id.getBytes(), encPwd.getBytes()));
 	}
 
+	/**
+	* Setzen von EncPwd
+	* 
+	* @param pwd EncPwd
+	*/
 	public void setEncPwd(final String pwd)
 	{
 		this.encPwd = byteArrayToString(encryptBlockwise(id.getBytes(), pwd.getBytes()));
 	}
+
 
 	public CookieSession(String id)
 	{
@@ -102,71 +121,140 @@ public class CookieSession
 		updatedAt = LocalTime.now();
 	}
 
+	/**
+	* Rückgabe von Id
+	* 
+	* @return (String) Id
+	*/
 	public String getId()
 	{
 		return id;
 	}
 
+	/**
+	* Setzen von Id
+	* 
+	* @param id Id
+	*/
 	public void setId(final String id)
 	{
 		this.id = id;
 	}
 
+	/**
+	* Abfragen von SignedIn
+	* 
+	* @return (boolean) 
+	*/
 	public boolean isSignedIn()
 	{
 		return signedIn;
 	}
 
+	/**
+	* Setzen von SignedIn
+	* 
+	* @param signedIn SignedIn
+	*/
 	public void setSignedIn(final boolean signedIn)
 	{
 		this.signedIn = signedIn;
 	}
 
+	/**
+	* Rückgabe von Username
+	* 
+	* @return (String) Username
+	*/
 	public String getUsername()
 	{
 		return username;
 	}
 
+	/**
+	* Setzen von Username
+	* 
+	* @param username Username
+	*/
 	public void setUsername(final String username)
 	{
 		this.username = username;
 	}
 
+	/**
+	* Rückgabe von DisplayName
+	* 
+	* @return (String) DisplayName
+	*/
 	public String getDisplayName()
 	{
 		return displayName;
 	}
 
+	/**
+	* Setzen von DisplayName
+	* 
+	* @param displayName DisplayName
+	*/
 	public void setDisplayName(final String displayName)
 	{
 		this.displayName = displayName;
 	}
 
+	/**
+	* Rückgabe von CreatedAt
+	* 
+	* @return (LocalTime) CreatedAt
+	*/
 	public LocalTime getCreatedAt()
 	{
 		return createdAt;
 	}
 
+	/**
+	* Setzen von CreatedAt
+	* 
+	* @param createdAt CreatedAt
+	*/
 	public void setCreatedAt(final LocalTime createdAt)
 	{
 		this.createdAt = createdAt;
 	}
 
+	/**
+	* Rückgabe von UpdatedAt
+	* 
+	* @return (LocalTime) UpdatedAt
+	*/
 	public LocalTime getUpdatedAt()
 	{
 		return updatedAt;
 	}
 
+	/**
+	* Setzen von UpdatedAt
+	* 
+	* @param updatedAt UpdatedAt
+	*/
 	public void setUpdatedAt(final LocalTime updatedAt)
 	{
 		this.updatedAt = updatedAt;
 	}
 
+	/**
+	* Description
+	* 
+	*/
 	public void update()
 	{
 		updatedAt = LocalTime.now();
 	}
 
+	/**
+	* Rückgabe von UserId
+	* 
+	* @return (Long) UserId
+	*/
 	public Long getUserId()
 	{
 		return userId;

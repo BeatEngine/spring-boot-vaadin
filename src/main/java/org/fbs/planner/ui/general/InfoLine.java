@@ -10,6 +10,7 @@ public class InfoLine extends Div
 
     }
 
+
     public InfoLine(final String id)
     {
         this.setId(id);

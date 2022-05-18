@@ -49,6 +49,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @param beforeEnterEvent
+				*/
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent)
     {
         // inform the user about an authentication error

@@ -15,6 +15,11 @@ public class TableHead extends com.vaadin.flow.component.HtmlContainer implement
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @return (String) 
+				*/
     public String toString()
     {
         String intern = "";

@@ -44,6 +44,11 @@ public class HomeController
         return homeService.save(UtilService.processRequestValuesByStringSTD(input, true), session);
     }
 
+				/**
+				* Description
+				* 
+				* @param "/auth"
+				*/
     @PostMapping("/auth")
     public ModelAndView index(@RequestBody final String input, final HttpServletRequest request, final HttpServletResponse response)
     {

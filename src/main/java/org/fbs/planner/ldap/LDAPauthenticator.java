@@ -91,6 +91,15 @@ public class LDAPauthenticator
 		return result;
 	}
 
+	/**
+	* Description
+	* 
+	* @param user
+	* @param ldapServer
+	* @param ldapPassword
+	* @param properties
+	* @return (String) 
+	*/
 	public static String queryUserData(String user, String ldapServer, String ldapPassword, Environment properties)
 	{
 		String                    result   = null;
@@ -169,6 +178,14 @@ public class LDAPauthenticator
 		return result;
 	}
 
+	/**
+	* Description
+	* 
+	* @param ldapServer
+	* @param ldapPassword
+	* @param properties
+	* @return (List<String>) 
+	*/
 	public static List<String> queryUsers(String ldapServer, String ldapPassword, Environment properties)
 	{
 		List<String>              result   = new ArrayList<String>();

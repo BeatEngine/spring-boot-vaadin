@@ -25,6 +25,11 @@ public class MainService
         return sessions;
     }
 
+				/**
+				* Rückgabe von Instance
+				* 
+				* @return (MainService) Instance
+				*/
     public static MainService getInstance()
     {
         return INSTANCE;

@@ -16,6 +16,11 @@ public class ComponentJS extends Component
     }
 
     @Override
+				/**
+				* Rückgabe von Element
+				* 
+				* @return (Element) Element
+				*/
     public Element getElement()
     {
         return element;

@@ -8,11 +8,21 @@ public class TextArea extends com.vaadin.flow.component.HtmlContainer implements
 
     }
 
+				/**
+				* Setzen von Value
+				* 
+				* @param value Value
+				*/
     public void setValue(final String value)
     {
         this.getElement().setAttribute("value", value);
     }
 
+				/**
+				* Rückgabe von Value
+				* 
+				* @return (String) Value
+				*/
     public String getValue()
     {
         return this.getElement().getAttribute("value");

@@ -12,33 +12,59 @@ public class PermissionRoleId implements Serializable
 
     }
 
+
     public PermissionRoleId(Long permissionId, Long roleId)
     {
         this.permissionId = permissionId;
         this.roleId = roleId;
     }
 
+				/**
+				* Rückgabe von PermissionId
+				* 
+				* @return (Long) PermissionId
+				*/
     public Long getPermissionId()
     {
         return permissionId;
     }
 
+				/**
+				* Setzen von PermissionId
+				* 
+				* @param permissionId PermissionId
+				*/
     public void setPermissionId(Long permissionId)
     {
         this.permissionId = permissionId;
     }
 
+				/**
+				* Rückgabe von RoleId
+				* 
+				* @return (Long) RoleId
+				*/
     public Long getRoleId()
     {
         return roleId;
     }
 
+				/**
+				* Setzen von RoleId
+				* 
+				* @param roleId RoleId
+				*/
     public void setRoleId(Long roleId)
     {
         this.roleId = roleId;
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @return (int) 
+				*/
     public int hashCode()
     {
         int hash = 7;
@@ -48,6 +74,12 @@ public class PermissionRoleId implements Serializable
     }
 
     @Override
+				/**
+				* Description
+				* 
+				* @param obj
+				* @return (boolean) 
+				*/
     public boolean equals(Object obj)
     {
         if(obj instanceof PermissionRoleId)
