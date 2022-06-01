@@ -11,9 +11,7 @@ import org.springframework.core.env.Environment;
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
-import javax.naming.directory.Attributes;
-import javax.naming.directory.SearchControls;
-import javax.naming.directory.SearchResult;
+import javax.naming.directory.*;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 import java.util.ArrayList;
@@ -275,22 +273,22 @@ public class LDAPauthenticator
 	 *
 	 * @param ldapAdServer address to server - use LDAPS address if possible!!!.
 	 * @param ldapPassword passwort to access ldap server.
-	 * @param username     EDAG system user.
-	 * @param password     EDAG system password.
+	 * @param username     **** system user.
+	 * @param password     **** system password.
 	 *                     Changes of the LDAP tree requires changes in this method.
 	 * @param properties
 	 * @return LDAPauthentificationData Daten zum User
 	 */
 	public static LDAPauthentificationData authenticateProjectUser(final String username, final String password,
-																						final String ldapAdServer, final String ldapPassword,
-																						final Environment properties)
+																   final String ldapAdServer, final String ldapPassword,
+																   final Environment properties)
 	{
 		final LDAPauthentificationData returnData = new LDAPauthentificationData(false, "", "");
 		/* Von rechts nach links --> den Baum absteigen*/
-		final String ldapBase = "cn=public"; /* ,dc=fbs,dc=org */
+		final String ldapBase = "cn=users,dc=ldap,dc=fbs,dc=de";
 
 		Hashtable<String, Object> env = new Hashtable<String, Object>();
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_AUTHENTICATION, "none");
 		if (ldapBase != null)
 		{
 			env.put(Context.SECURITY_PRINCIPAL, ldapBase);
@@ -315,20 +313,57 @@ public class LDAPauthenticator
 
 			NamingEnumeration<SearchResult> useringroup2 = null;
 
-			returnData.setSuccessfullyAuthenticated(true);
-			return returnData;
-			/*try
+			try
 			{
 				useringroup = ctx
-					.search("ou=people", "(uid=" + username + ")", getSimpleSearchControls());
+						.search("cn=users,dc=ldap,dc=fbs,dc=de", "(uid=" + username + ")", getSimpleSearchControls());
 
-				// Die zweite Verbindung zum LDAP-Server prüft ob der User in der Gruppe ist und ob diese Existiert
+				/* Die zweite Verbindung zum LDAP-Server prüft ob der User in der Gruppe ist und ob diese Existiert*/
 				returnData.setSuccessfullyAuthenticated(false);
-				final SearchResult result     = useringroup.next();
-				final Attributes   attributes = result.getAttributes();
-				final String       ldapGroup  = properties.getProperty("ldap-project");
-				useringroup2 = ctx.search("cn=" + ldapGroup + ",ou=jedwin,ou=de,dc=edag,dc=com", "objectClass=*",
-												  getSimpleSearchControls());
+				final SearchResult result = useringroup.next();
+
+				if (result != null)
+				{
+					final boolean relative   = result.isRelative();
+					String        pathToUser = result.getName();
+					if (relative)
+					{
+						pathToUser += ",cn=users,dc=ldap,dc=fbs,dc=de";
+					}
+					//Passwort-Check
+					try
+					{
+						// Set up the environment for creating the initial context
+						Hashtable<String, String> enva = new Hashtable<String, String>();
+						enva.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+						enva.put(Context.PROVIDER_URL, ldapAdServer);
+						//
+						enva.put(Context.SECURITY_AUTHENTICATION, "none");
+						enva.put(Context.SECURITY_PRINCIPAL,
+								pathToUser);
+						enva.put(Context.SECURITY_CREDENTIALS, password);
+
+						// Create the initial context
+
+						final DirContext ctxa       = new InitialDirContext(enva);
+						final boolean    resultAuth = ctxa != null;
+						if (ctxa != null)
+						{
+							ctxa.close();
+						}
+
+					}
+					catch (final Exception e)
+					{
+						//Authentification failed!
+						return returnData;
+					}
+				}
+
+				final Attributes attributes = result.getAttributes();
+				final String     ldapGroup  = properties.getProperty("ldap-project");
+				useringroup2 = ctx.search("cn=" + ldapGroup + ",cn=users,dc=ldap,dc=fbs,dc=de", "objectClass=*",
+						getSimpleSearchControls());
 
 				if (useringroup2.hasMore())
 				{
@@ -338,7 +373,7 @@ public class LDAPauthenticator
 					if (!members.contains(correctFilter))
 					{
 						returnData.setReasonForFail(
-							attributes.get("displayName").get().toString() + " isn't a member of " + ldapGroup);
+								attributes.get("displayName").get().toString() + " isn't a member of " + ldapGroup);
 						ctx.close();
 						return returnData;
 					}
@@ -353,7 +388,7 @@ public class LDAPauthenticator
 				//Setzen der User-Infos
 				returnData.setSuccessfullyAuthenticated(true);
 				returnData.setFullUserName(
-					attributes.get("givenname").get().toString() + " " + attributes.get("sn").get().toString());
+						attributes.get("givenname").get().toString() + " " + attributes.get("sn").get().toString());
 				returnData.setBusinesscategory(attributes.get("businesscategory").get().toString());
 				returnData.setTitle(attributes.get("title").get().toString());
 				ctx.close();
@@ -364,7 +399,7 @@ public class LDAPauthenticator
 				returnData.setReasonForFail("user not in LDAP group \"people\" or wrong password");
 				ctx.close();
 				return returnData;
-			}*/
+			}
 		}
 		catch (final NamingException e)
 		{

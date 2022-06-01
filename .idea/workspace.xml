@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a6d8dd9-100e-4fc7-bbe9-51821c0e998b" name="Default Changelist" comment="LDAP eingerichtet.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/general/CustomElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ldap/LDAPauthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ldap/LDAPauthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/general/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/general/Option.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/general/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/general/Select.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/table/Vertretungsplan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/table/Vertretungsplan.java" afterDir="false" />
     </list>
@@ -252,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654068045530</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="LDAP eingerichtet.">
+      <created>1654068638039</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1654068638039</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,22 +291,6 @@
     <MESSAGE value="Tabelle entwurf speichern." />
     <MESSAGE value="LDAP eingerichtet." />
     <option name="LAST_COMMIT_MESSAGE" value="LDAP eingerichtet." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/fbs/planner/ldap/LDAPauthenticator.java</url>
-          <line>312</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/fbs/planner/ldap/LDAPauthenticator.java</url>
-          <line>253</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

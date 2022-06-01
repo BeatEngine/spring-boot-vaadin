@@ -160,12 +160,9 @@ public class Vertretungsplan extends Div
         reasonInp.getStyle().set("width", "50%");
 
         Select classInp = new Select("klasse-antrag", "klasse-antrag");
-
         //todo klassen eintragen
-
         classInp.addOption(new Option("test", "Test"));
-
-        classInp.setId("klasse-antrag");
+        classInp.addOption(new Option("test2", "Test2"));
         classInp.setClassName("form-input");
         Span restText = new Span();
         restText.setText("(Belege, wie Einladungen usw. anhängen)");
