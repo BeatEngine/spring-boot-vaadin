@@ -5,6 +5,8 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.Span;
 import org.fbs.planner.DefinitionPaths;
+import org.fbs.planner.ui.general.Option;
+import org.fbs.planner.ui.general.Select;
 import org.fbs.planner.ui.table.components.CellInput;
 import org.fbs.planner.ui.table.components.Th;
 import org.fbs.planner.utils.UtilService;
@@ -157,8 +159,12 @@ public class Vertretungsplan extends Div
         reasonInp.setClassName("form-input");
         reasonInp.getStyle().set("width", "50%");
 
-        Input classInp = new Input();
-        classInp.getElement().setAttribute("name", "klasse-antrag");
+        Select classInp = new Select("klasse-antrag", "klasse-antrag");
+
+        //todo klassen eintragen
+
+        classInp.addOption(new Option("test", "Test"));
+
         classInp.setId("klasse-antrag");
         classInp.setClassName("form-input");
         Span restText = new Span();

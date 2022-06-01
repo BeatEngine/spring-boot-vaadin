@@ -18,6 +18,11 @@ public class Select extends com.vaadin.flow.component.HtmlContainer implements c
 
     }
 
+    public void addOption(final Option opt)
+    {
+        options.add(opt);
+    }
+
     public Select(final String id, final String name)
     {
         this.setId(id);

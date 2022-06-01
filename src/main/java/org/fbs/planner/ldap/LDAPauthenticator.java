@@ -230,10 +230,10 @@ public class LDAPauthenticator
 					Attributes attributes = tmp.getAttributes();
 
 					String res = "{" +
-									 "\"sn\":\"" +
-									 attributes.get("sn").get().toString() +
-									 "\",\"givenname\":\"" +
-									 attributes.get("givenname").get().toString() +
+									 "\"displayname\":\"" +
+									 attributes.get("displayname").get().toString() +
+									 "\",\"authauthority\":\"" +
+									 attributes.get("authauthority").get().toString() +
 									 "\",\"uidnumber\":\"" +
 									 attributes.get("uidnumber").get().toString() +
 									 "\",\"uid\":\"" +
@@ -241,14 +241,10 @@ public class LDAPauthenticator
 											 "\"";
 					try
 					{
-						res += ",\"businesscategory\":\"" +
-								 attributes.get("businesscategory").get().toString() +
+						res += ",\"sn\":\"" +
+								 attributes.get("sn").get().toString() +
 								 "\",\"memberof\":\"" +
-								 "cn=" +
-								 attributes.get("oeid").get().toString() +
-								 tmp.getNameInNamespace().substring(tmp.getName().length()) +
-								 "\",\"mail\":\"" +
-								 attributes.get("mail").get().toString() +
+								 attributes.get("memberof").get().toString() +
 								 "\"";
 					}catch (Exception ex)
 					{
@@ -260,7 +256,7 @@ public class LDAPauthenticator
 				}
 				catch (Exception e)
 				{
-					//System.out.println("LDAP query users error! " + e.getMessage());
+					System.out.println("LDAP query users error! " + e.getMessage());
 				}
 			}
 
