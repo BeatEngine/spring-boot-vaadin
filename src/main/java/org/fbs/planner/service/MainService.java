@@ -1,5 +1,6 @@
 package org.fbs.planner.service;
 
+import org.fbs.planner.ldap.LDAPauthenticator;
 import org.fbs.planner.session.CookieSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -9,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.http.HttpRequest;
+import java.util.List;
 
 @Service
 public class MainService
@@ -53,6 +55,9 @@ public class MainService
 
         final String usrnm = username;
         final String paswd = password;
+
+        List<String> strings = LDAPauthenticator.queryUsers(properties.getProperty("ldap-server-address"),
+                properties.getProperty("ldap-server-password"));
 
         String sid = sessions.newSession();
         //todo User implementieren!!!

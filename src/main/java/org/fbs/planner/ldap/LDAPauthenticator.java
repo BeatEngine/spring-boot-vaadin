@@ -26,9 +26,9 @@ public class LDAPauthenticator
 	public static String queryUserData(int userPNUM, String ldapServer, String ldapPassword, Environment properties)
 	{
 		String                    result   = null;
-		final String              ldapBase = "cn=public,dc=fbs,dc=org";
+		final String              ldapBase = "cn=users,dc=ldap,dc=fbs,dc=de";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_AUTHENTICATION, "none");
 		if (ldapBase != null)
 		{
 			env.put(Context.SECURITY_PRINCIPAL, ldapBase);
@@ -49,7 +49,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uidnumber=" + userPNUM + ")",
+				useringroup = ctx.search("cn=users,dc=ldap,dc=fbs,dc=de", "(uidnumber=" + userPNUM + ")",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -103,9 +103,9 @@ public class LDAPauthenticator
 	public static String queryUserData(String user, String ldapServer, String ldapPassword, Environment properties)
 	{
 		String                    result   = null;
-		final String              ldapBase = "cn=public,dc=fbs,dc=org";
+		final String              ldapBase = "cn=users,dc=ldap,dc=fbs,dc=de";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_AUTHENTICATION, "none");
 		if (ldapBase != null)
 		{
 			env.put(Context.SECURITY_PRINCIPAL, ldapBase);
@@ -126,7 +126,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uid=" + user + ")",
+				useringroup = ctx.search("cn=users,dc=ldap,dc=fbs,dc=de", "(uid=" + user + ")",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -183,15 +183,14 @@ public class LDAPauthenticator
 	* 
 	* @param ldapServer
 	* @param ldapPassword
-	* @param properties
 	* @return (List<String>) 
 	*/
-	public static List<String> queryUsers(String ldapServer, String ldapPassword, Environment properties)
+	public static List<String> queryUsers(String ldapServer, String ldapPassword)
 	{
 		List<String>              result   = new ArrayList<String>();
-		final String              ldapBase = "cn=public,dc=fbs,dc=org";
+		final String              ldapBase = "cn=users,dc=ldap,dc=fbs,dc=de";
 		Hashtable<String, Object> env      = new Hashtable<String, Object>();
-		env.put(Context.SECURITY_AUTHENTICATION, "simple");
+		env.put(Context.SECURITY_AUTHENTICATION, "none");
 		if (ldapBase != null)
 		{
 			env.put(Context.SECURITY_PRINCIPAL, ldapBase);
@@ -212,7 +211,7 @@ public class LDAPauthenticator
 			NamingEnumeration<SearchResult> useringroup = null;
 			try
 			{
-				useringroup = ctx.search("ou=people,ou=de,dc=fbs,dc=org", "(uidnumber>=0)",
+				useringroup = ctx.search("cn=users,dc=ldap,dc=fbs,dc=de", "(uid>=0)",
 												 getSimpleSearchControls());
 			}
 			catch (Exception e)
@@ -394,3 +393,12 @@ public class LDAPauthenticator
 
 
 }
+
+
+
+
+
+
+
+
+
