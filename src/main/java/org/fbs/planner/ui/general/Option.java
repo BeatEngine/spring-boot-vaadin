@@ -18,6 +18,18 @@ public class Option extends com.vaadin.flow.component.HtmlContainer implements c
         option.setText(text);
     }
 
+    public Option(final String value, final String text, boolean selected)
+    {
+        this.value = value;
+        this.setText(text);
+        option.setAttribute("value", value);
+        option.setText(text);
+        if(selected)
+        {
+            option.setAttribute("selected", true);
+        }
+    }
+
     @Override
     public String toString()
     {

@@ -16,6 +16,7 @@ import com.vaadin.flow.server.VaadinService;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.fbs.planner.DefinitionPaths;
+import org.fbs.planner.repository.AntragRepository;
 import org.fbs.planner.service.MainService;
 import org.fbs.planner.ui.general.ComponentJS;
 import org.fbs.planner.ui.general.NavBar;
@@ -41,6 +42,8 @@ import java.util.stream.Stream;
 public class MainView extends VerticalLayout
 {
     private MainService service;
+
+    private AntragRepository antragRepo;
 
     /**
      * Laden des JavaScripts für Alle Seiten
@@ -87,11 +90,14 @@ public class MainView extends VerticalLayout
     public MainView()
     {
         service = MainService.getInstance();
+        antragRepo = service.antragRepo;
         defineScript();
         this.addClassName("no-padding");
         add(new NavBar(defineNavBarContent()));
+        final Vertretungsplan vertretungsplan = new Vertretungsplan();
+        vertretungsplan.setAvailableSaves(antragRepo.findAll());
 
-        add(new Vertretungsplan());
+        add(vertretungsplan);
     }
 
 

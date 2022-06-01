@@ -6,6 +6,12 @@ function link(url)
     document.location = url;
 }
 
+function selectAntrag()
+{
+   var tar = event.target;
+   window.href = "/antrag/"+tar.value+"?rnd=" + Math.random().toString().substr(2);
+}
+
 function entwurfSpeichern()
 {
     var inputs = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("input");

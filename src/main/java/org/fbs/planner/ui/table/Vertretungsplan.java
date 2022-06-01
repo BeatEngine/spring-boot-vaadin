@@ -5,6 +5,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Input;
 import com.vaadin.flow.component.html.Span;
 import org.fbs.planner.DefinitionPaths;
+import org.fbs.planner.entity.Antrag;
 import org.fbs.planner.ui.general.Option;
 import org.fbs.planner.ui.general.Select;
 import org.fbs.planner.ui.table.components.CellInput;
@@ -17,6 +18,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 @CssImport(DefinitionPaths.CSS_DIR+"table.css")
 public class Vertretungsplan extends Div
@@ -51,6 +53,14 @@ public class Vertretungsplan extends Div
         tableWrapper.add(table);
         add(tableWrapper);
         initForm();
+    }
+    private Select avs;
+    public void setAvailableSaves(final List<Antrag> antraege)
+    {
+        for(final Antrag a : antraege)
+        {
+            avs.addOption(new Option(a.getId().toString(), a.getName() + "-" + a.getKlasse()  + "-" +  a.getVon()));
+        }
     }
 
     private void initForm()
@@ -148,6 +158,11 @@ public class Vertretungsplan extends Div
         headTable.getHeadCell(0, 2).setText("Grund der Abwesenheit:");
 
         final Th kopfZelleActions = new Th();
+        final Select select = new Select("select-saved", "select-saved");
+        avs = select;
+        avs.addOption(new Option("0", "[Bitte wählen]", true));
+        avs.setOnSelect("selectAntrag()");
+        kopfZelleActions.add(select);
         kopfZelleActions.add(new CustomButton("Entwurf Speichern", "table-button tbtn-save", "button-speichern", "entwurfSpeichern();"));
         kopfZelleActions.add(new CustomButton("Antrag veröffentlichen", "table-button tbtn-publish", "button-beantragen", "entwurfBeantragen();"));
         kopfZelleActions.add(new CustomButton("Entwurf entfernen", "table-button tbtn-abbort", "button-entfernen", "entwurfEntfernen();"));

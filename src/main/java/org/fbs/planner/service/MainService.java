@@ -1,6 +1,7 @@
 package org.fbs.planner.service;
 
 import org.fbs.planner.ldap.LDAPauthenticator;
+import org.fbs.planner.repository.AntragRepository;
 import org.fbs.planner.session.CookieSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -19,6 +20,9 @@ public class MainService
 
     @Autowired
     private Environment properties;
+
+    @Autowired
+    public AntragRepository antragRepo;
 
     private CookieSessionManager sessions = new CookieSessionManager();
 

@@ -45,6 +45,11 @@ public class Select extends com.vaadin.flow.component.HtmlContainer implements c
         return "<select id=\""+this.getId().toString()+"\" name=\""+ name + "\" >" + inner + "\n</select>";
     }
 
+    public void setOnSelect(final String onselect)
+    {
+        select.setAttribute("onselect", onselect);
+    }
+
     @Override
     public Element getElement()
     {
