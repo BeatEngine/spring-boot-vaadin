@@ -197,10 +197,12 @@ public class Vertretungsplan extends Div
         abteilungsleiter.getStyle().set("white-space","nowrap");
         abteilungsleiter.getStyle().set("width","100%");
         abteilungsleiter.getStyle().set("text-align","left");
-        Input abteilungsleiterInp = new Input();
-        abteilungsleiterInp.getElement().setAttribute("name", "abteilungsleiter-antrag");
-        abteilungsleiterInp.setId("abteilungsleiter-antrag");
+        Select abteilungsleiterInp = new Select("abteilungsleiter-antrag", "abteilungsleiter-antrag");
         abteilungsleiterInp.setClassName("form-input");
+        //todo Liste der Abteilungsleiter
+        abteilungsleiterInp.addOption(new Option("1", "Test1"));
+        abteilungsleiterInp.addOption(new Option("2", "Test2"));
+
         Div schulleitung = new Div();
         schulleitung.setText("Schulleitung:");
         schulleitung.setHeight("33.3333%");
@@ -213,6 +215,7 @@ public class Vertretungsplan extends Div
         schulleitungInp.getElement().setAttribute("name", "schulleitung-antrag");
         schulleitungInp.setId("schulleitung-antrag");
         schulleitungInp.setClassName("form-input");
+        schulleitungInp.setValue("Ulrike Vogler");
 
         vermerk.add(vermerkInp);
         abteilungsleiter.add(abteilungsleiterInp);
