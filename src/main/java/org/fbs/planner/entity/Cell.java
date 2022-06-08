@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "x", "y", "antrag_id" }) })
-public class Cell
+public class Cell implements Comparable<Cell>
 {
     @Id
     @GeneratedValue
@@ -134,5 +134,15 @@ public class Cell
     public void setY(int y)
     {
         this.y = y;
+    }
+
+    @Override
+    public int compareTo(Cell o)
+    {
+        if(o == null)
+        {
+            return 0;
+        }
+        return (y*6+x)-(o.getY()*6+o.getX());
     }
 }

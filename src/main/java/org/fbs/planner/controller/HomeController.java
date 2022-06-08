@@ -8,6 +8,7 @@ import org.fbs.planner.service.MainService;
 import org.fbs.planner.utils.UtilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +38,12 @@ public class HomeController
     {
         return service.home();
     }*/
+
+    @PostMapping("/antrag/{idt}")
+    public ResponseEntity<byte[]> index(@PathVariable("idt") final String id, @CookieValue("session") final String session)
+    {
+        return homeService.getTableData(Integer.parseInt(id));
+    }
 
     @PostMapping("/table/save")
     public ModelAndView save(@RequestBody final String input, @CookieValue("session") String session)

@@ -10,11 +10,8 @@ import org.fbs.planner.ui.general.Option;
 import org.fbs.planner.ui.general.Select;
 import org.fbs.planner.ui.table.components.CellInput;
 import org.fbs.planner.ui.table.components.Th;
-import org.fbs.planner.utils.UtilService;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -160,8 +157,8 @@ public class Vertretungsplan extends Div
         final Th kopfZelleActions = new Th();
         final Select select = new Select("select-saved", "select-saved");
         avs = select;
-        avs.addOption(new Option("0", "[Bitte wählen]", true));
-        avs.setOnSelect("selectAntrag()");
+        avs.addOption(new Option("0", "[Neu anlegen]", true));
+        avs.setOnChange("selectAntrag()");
         kopfZelleActions.add(select);
         kopfZelleActions.add(new CustomButton("Entwurf Speichern", "table-button tbtn-save", "button-speichern", "entwurfSpeichern();"));
         kopfZelleActions.add(new CustomButton("Antrag veröffentlichen", "table-button tbtn-publish", "button-beantragen", "entwurfBeantragen();"));

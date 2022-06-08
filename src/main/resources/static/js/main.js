@@ -6,10 +6,110 @@ function link(url)
     document.location = url;
 }
 
+function selectAuto(elementId, value)
+{
+    var select = document.getElementById(elementId);
+    if(select)
+    {
+        var opts = select.getElementsByTagName("option");
+        for(var i = 0; i < opts.length; i++)
+        {
+            if(opts[i].value == value)
+            {
+                opts[i].setAttribute("selected", "");
+                opts[i].selected = true;
+                select.value = value;
+            }
+            else
+            {
+                opts[i].removeAttribute("selected");
+                opts[i].selected = false;
+            }
+        }
+    }
+    else
+    {
+        console.log("Warnung: select nicht gefunden!");
+    }
+}
+
 function selectAntrag()
 {
-   var tar = event.target;
-   window.href = "/antrag/"+tar.value+"?rnd=" + Math.random().toString().substr(2);
+    if(event.target.value == 0)
+    {
+        //Neu anlegen --> Felder leeren
+        document.getElementById("name-antragsteller").value = "";
+        document.getElementById("grund-antrag").value = "";
+        document.getElementById("vermerk-antrag").value =  "";
+        document.getElementById("anfang-antrag").value = ""
+        document.getElementById("ende-antrag").value = ""
+        //Tabelle leeren
+        for(var y = 0; y < 16; y++)
+        {
+            for(var x = 1; x < 7; x++)
+            {
+                var cellBox = document.getElementById("cell-"+x+"-"+y);
+                if(cellBox)
+                {
+                    cellBox.innerText = "";
+                }
+            }
+        }
+    }
+    else
+    {
+
+   asyncRequest("POST","/antrag/"+event.target.value, "", function loadTable(){
+        var res = JSON.parse(this.response);
+        if(res)
+        {
+            if(res.antrag && res.cells)
+            {
+                var antrag = res.antrag;
+                var istEntwurf = antrag.entwurf == true;
+                document.getElementById("name-antragsteller").value = antrag.name;
+                document.getElementById("grund-antrag").value = antrag.reason;
+                selectAuto("klasse-antrag", antrag.klasse);
+                document.getElementById("vermerk-antrag").value =  antrag.vermerk;
+                selectAuto("abteilungsleiter-antrag", antrag.abteilungsleiter);
+
+                if(antrag.schulleitung != "")
+                {
+                    document.getElementById("schulleitung-antrag").value = antrag.schulleitung;
+                }
+
+                document.getElementById("anfang-antrag").value = antrag.von;
+                document.getElementById("ende-antrag").value = antrag.bis;
+
+                var zellen = res.cells;
+                for(var i = 0; i < zellen.length; i++)
+                {
+                    var x = zellen[i].x;
+                    var y = zellen[i].y;
+                    var text = zellen[i].text;
+                    var cellBox = document.getElementById("cell-"+x+"-"+y);
+                    if(cellBox)
+                    {
+                        cellBox.innerText = text;
+                    }
+                }
+
+            }
+            else
+            {
+                alert("Interner Fehler!\nDaten wurden nicht korrekt verarbeitet!");
+            }
+        }
+   });
+
+   }
+}
+
+function updateEntwurfSelect()
+{
+    asyncRequest("POST", "/liste-entwurf", "", function sel(){
+      //todo .....
+    });
 }
 
 function entwurfSpeichern()

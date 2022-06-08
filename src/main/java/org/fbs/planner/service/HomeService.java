@@ -1,20 +1,23 @@
 package org.fbs.planner.service;
 
+import elemental.json.JsonObject;
 import org.fbs.planner.entity.Antrag;
 import org.fbs.planner.entity.Cell;
 import org.fbs.planner.repository.AntragRepository;
 import org.fbs.planner.repository.CellRepository;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.nio.charset.StandardCharsets;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class HomeService
@@ -34,6 +37,44 @@ public class HomeService
 
 
         return view;
+    }
+
+    public ResponseEntity<byte[]> getTableData(final long antragId)
+    {
+        final JSONObject response = new JSONObject();
+
+        Optional<Antrag> byId = antragRepo.findById(antragId);
+
+        if(!byId.isEmpty())
+        {
+            final Antrag antrag = byId.get();
+
+            List<Cell> allByAntragId = cellRepo.findAllByAntragId(antragId);
+
+            allByAntragId.sort(Cell::compareTo);
+
+            final JSONObject antragJSON = new JSONObject();
+
+            antragJSON.put("id", antragId);
+            antragJSON.put("user_id", antrag.getUser_id());
+            antragJSON.put("name", antrag.getName());
+            antragJSON.put("klasse", antrag.getKlasse());
+            antragJSON.put("reason", antrag.getReason());
+            antragJSON.put("vermerk", antrag.getVermerk());
+            antragJSON.put("abteilungsleiter", antrag.getAbteilungsleiter());
+            antragJSON.put("schulleitung", antrag.getSchulleitung());
+            antragJSON.put("von", antrag.getVon().toLocalDateTime().toLocalDate());
+            antragJSON.put("bis", antrag.getBis().toLocalDateTime().toLocalDate());
+            antragJSON.put("entwurf", antrag.isEntwurf());
+            response.put("antrag", antragJSON);
+
+            final JSONArray cells = new JSONArray(allByAntragId);
+            response.put("cells", cells);
+
+
+        }
+
+        return new ResponseEntity<byte[]>(response.toString().getBytes(),HttpStatus.OK);
     }
 
 				/**

@@ -46,6 +46,11 @@ public class Antrag
         this.entwurf = entwurf;
     }
 
+    public boolean isEntwurf()
+    {
+        return entwurf;
+    }
+
     private boolean entwurf;
 
     private Timestamp von;
