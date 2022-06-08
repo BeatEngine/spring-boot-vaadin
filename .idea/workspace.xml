@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a6d8dd9-100e-4fc7-bbe9-51821c0e998b" name="Default Changelist" comment="Anlegen, Speichern, entfernen">
+    <list default="true" id="8a6d8dd9-100e-4fc7-bbe9-51821c0e998b" name="Default Changelist" comment="Reading presets from text-files.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/table/Vertretungsplan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/fbs/planner/ui/table/Vertretungsplan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -293,7 +294,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654683708715</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Anlegen, Speichern, entfernen">
+      <created>1654684603941</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1654684603941</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -325,18 +333,8 @@
     <MESSAGE value="Dropdown-Select mit Optionen." />
     <MESSAGE value="Onselect für Select." />
     <MESSAGE value="Anlegen, Speichern, entfernen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Anlegen, Speichern, entfernen" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/fbs/planner/service/HomeService.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Reading presets from text-files." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reading presets from text-files." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

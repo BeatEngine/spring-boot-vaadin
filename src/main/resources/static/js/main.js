@@ -169,7 +169,10 @@ function entwurfSpeichern()
         }
     asyncRequest("POST", "/table/save", body, function tmp()
     {
+        var id = document.getElementById("select-saved").value;
         updateAvailableAntraege();
+        //Den aktuellen Plan auswählen.
+        selectAuto(select-saved, id);
         pushNotification("Entwurf gespeichert!", "Der Entwurf wurde gespeichert!");
     });
 }

@@ -11,6 +11,10 @@ import org.fbs.planner.ui.general.Select;
 import org.fbs.planner.ui.table.components.CellInput;
 import org.fbs.planner.ui.table.components.Th;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -172,9 +176,35 @@ public class Vertretungsplan extends Div
         reasonInp.getStyle().set("width", "50%");
 
         Select classInp = new Select("klasse-antrag", "klasse-antrag");
-        //todo klassen eintragen
-        classInp.addOption(new Option("test", "Test"));
-        classInp.addOption(new Option("test2", "Test2"));
+
+        if(!new File("liste-klassen.txt").exists())
+        {
+            try
+            {
+                final FileOutputStream fout = new FileOutputStream("liste-klassen.txt");
+                fout.write("Klasse1\nKlasse2\nKlasse3\n...".getBytes());
+                fout.close();
+            }
+            catch (final IOException ioe)
+            {
+
+            }
+        }
+        try
+        {
+            final FileInputStream fileInputStream = new FileInputStream("liste-klassen.txt");
+            final String klassenInput = new String(fileInputStream.readAllBytes());
+            final String[] zeilen = klassenInput.split("\n");
+            for (final String z : zeilen)
+            {
+                classInp.addOption(new Option(z, z));
+            }
+        }
+        catch (final IOException ioe)
+        {
+
+        }
+
         classInp.setClassName("form-input");
         Span restText = new Span();
         restText.setText("(Belege, wie Einladungen usw. anhängen)");
@@ -212,9 +242,36 @@ public class Vertretungsplan extends Div
         Select abteilungsleiterInp = new Select("abteilungsleiter-antrag", "abteilungsleiter-antrag");
         abteilungsleiterInp.setClassName("form-input");
         //todo Liste der Abteilungsleiter
-        abteilungsleiterInp.addOption(new Option("1", "Test1"));
-        abteilungsleiterInp.addOption(new Option("2", "Test2"));
 
+        if(!new File("liste-abteilungsleiter.txt").exists())
+        {
+            try
+            {
+                final FileOutputStream fout = new FileOutputStream("liste-abteilungsleiter.txt");
+                fout.write("Max Mustermann\nHerbert Uwe\nAnna Müller\n...".getBytes());
+                fout.close();
+            }
+            catch (final IOException ioe)
+            {
+
+            }
+        }
+        try
+        {
+            final FileInputStream fileInputStream = new FileInputStream("liste-abteilungsleiter.txt");
+            final String klassenInput = new String(fileInputStream.readAllBytes());
+            final String[] zeilen = klassenInput.split("\n");
+            int ac = 0;
+            for (final String z : zeilen)
+            {
+                abteilungsleiterInp.addOption(new Option(""+ac, z));
+                ac++;
+            }
+        }
+        catch (final IOException ioe)
+        {
+
+        }
         Div schulleitung = new Div();
         schulleitung.setText("Schulleitung:");
         schulleitung.setHeight("33.3333%");
