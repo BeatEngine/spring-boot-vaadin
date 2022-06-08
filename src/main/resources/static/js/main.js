@@ -118,7 +118,12 @@ function updateAvailableAntraege()
         {
             var option = document.createElement("option");
             option.value = arr[i].id;
-            option.innerText = arr[i].name + "-" + arr[i].klasse + "-" + arr[i].von;
+            var klasse = arr[i].klasse;
+            if(!klasse)
+            {
+                klasse = "null";
+            }
+            option.innerText = arr[i].name + "-" + klasse + "-" + arr[i].von;
             select.appendChild(option);
         }
         select.value = "0";
@@ -129,6 +134,7 @@ function entwurfSpeichern()
 {
     var inputs = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("input");
     var textboxes = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("textarea");
+    var selects = document.getElementsByTagName("vaadin-vertical-layout")[0].getElementsByTagName("select");
     var body = "";
     var p = 0;
     for(var i = 0; i < inputs.length; i++)
@@ -151,6 +157,16 @@ function entwurfSpeichern()
         }
         body += inp.name + "=" + encodeURIComponent(inp.value);
     }
+    for(var i = 0; i < selects.length; i++)
+        {
+            var inp = selects[i];
+            if(p > 0)
+            {
+                body += "&";
+                p++;
+            }
+            body += inp.name + "=" + encodeURIComponent(inp.value);
+        }
     asyncRequest("POST", "/table/save", body, function tmp()
     {
         updateAvailableAntraege();
@@ -161,7 +177,7 @@ function entwurfSpeichern()
 function entwurfBeantragen()
 {
     entwurfSpeichern();
-
+    updateAvailableAntraege();
 }
 
 function entwurfEntfernen()
