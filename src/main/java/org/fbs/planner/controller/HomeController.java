@@ -44,6 +44,23 @@ public class HomeController
     {
         return homeService.getTableData(Integer.parseInt(id));
     }
+    @PostMapping("/antrag/{idt}/remove")
+    public ResponseEntity<byte[]> removeAntrag(@PathVariable("idt") final String id, @CookieValue("session") final String session)
+    {
+        return homeService.removeAntragById(Long.parseLong(id));
+    }
+
+    @PostMapping("/listeentwurf")
+    public ResponseEntity<byte[]> listOfTables(@CookieValue("session") final String session)
+    {
+        return homeService.getAntragListe();
+    }
+
+    @PostMapping("/listeentwurf/user/{uid}")
+    public ResponseEntity<byte[]> listOfTables(@CookieValue("session") final String session, @PathVariable("uid") final String userId)
+    {
+        return homeService.getAntragListe(Long.parseLong(userId));
+    }
 
     @PostMapping("/table/save")
     public ModelAndView save(@RequestBody final String input, @CookieValue("session") String session)

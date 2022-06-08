@@ -41,8 +41,8 @@ function selectAntrag()
         document.getElementById("name-antragsteller").value = "";
         document.getElementById("grund-antrag").value = "";
         document.getElementById("vermerk-antrag").value =  "";
-        document.getElementById("anfang-antrag").value = ""
-        document.getElementById("ende-antrag").value = ""
+        document.getElementById("anfang-antrag").value = "";
+        document.getElementById("ende-antrag").value = "";
         //Tabelle leeren
         for(var y = 0; y < 16; y++)
         {
@@ -51,7 +51,7 @@ function selectAntrag()
                 var cellBox = document.getElementById("cell-"+x+"-"+y);
                 if(cellBox)
                 {
-                    cellBox.innerText = "";
+                    cellBox.value = "";
                 }
             }
         }
@@ -59,56 +59,69 @@ function selectAntrag()
     else
     {
 
-   asyncRequest("POST","/antrag/"+event.target.value, "", function loadTable(){
-        var res = JSON.parse(this.response);
-        if(res)
-        {
-            if(res.antrag && res.cells)
+        asyncRequest("POST","/antrag/"+event.target.value, "", function loadTable(){
+            var res = JSON.parse(this.response);
+            if(res)
             {
-                var antrag = res.antrag;
-                var istEntwurf = antrag.entwurf == true;
-                document.getElementById("name-antragsteller").value = antrag.name;
-                document.getElementById("grund-antrag").value = antrag.reason;
-                selectAuto("klasse-antrag", antrag.klasse);
-                document.getElementById("vermerk-antrag").value =  antrag.vermerk;
-                selectAuto("abteilungsleiter-antrag", antrag.abteilungsleiter);
-
-                if(antrag.schulleitung != "")
+                if(res.antrag && res.cells)
                 {
-                    document.getElementById("schulleitung-antrag").value = antrag.schulleitung;
-                }
+                    var antrag = res.antrag;
+                    var istEntwurf = antrag.entwurf;
+                    document.getElementById("name-antragsteller").value = antrag.name;
+                    document.getElementById("grund-antrag").value = antrag.reason;
+                    selectAuto("klasse-antrag", antrag.klasse);
+                    document.getElementById("vermerk-antrag").value =  antrag.vermerk;
+                    selectAuto("abteilungsleiter-antrag", antrag.abteilungsleiter);
 
-                document.getElementById("anfang-antrag").value = antrag.von;
-                document.getElementById("ende-antrag").value = antrag.bis;
-
-                var zellen = res.cells;
-                for(var i = 0; i < zellen.length; i++)
-                {
-                    var x = zellen[i].x;
-                    var y = zellen[i].y;
-                    var text = zellen[i].text;
-                    var cellBox = document.getElementById("cell-"+x+"-"+y);
-                    if(cellBox)
+                    if(antrag.schulleitung != "")
                     {
-                        cellBox.innerText = text;
+                        document.getElementById("schulleitung-antrag").value = antrag.schulleitung;
+                    }
+
+                    document.getElementById("anfang-antrag").value = antrag.von;
+                    document.getElementById("ende-antrag").value = antrag.bis;
+
+                    var zellen = res.cells;
+                    for(var i = 0; i < zellen.length; i++)
+                    {
+                        var x = zellen[i].x;
+                        var y = zellen[i].y;
+                        var text = zellen[i].text;
+                        var cellBox = document.getElementById("cell-"+x+"-"+y);
+                        if(cellBox)
+                        {
+                            cellBox.value = text;
+                        }
                     }
                 }
-
+                else
+                {
+                    alert("Interner Fehler!\nDaten wurden nicht korrekt verarbeitet!");
+                }
             }
-            else
-            {
-                alert("Interner Fehler!\nDaten wurden nicht korrekt verarbeitet!");
-            }
-        }
-   });
+        });
 
    }
 }
 
-function updateEntwurfSelect()
+function updateAvailableAntraege()
 {
-    asyncRequest("POST", "/liste-entwurf", "", function sel(){
-      //todo .....
+    asyncRequest("POST", "/listeentwurf", "", function tmplistload(){
+        var arr = JSON.parse(this.response);
+        var select = document.getElementById("select-saved");
+        select.innerHTML = "";
+        var opt = document.createElement("option");
+            opt.value = "0";
+            opt.innerText = "[Neu anlegen]";
+            select.appendChild(opt);
+        for(var i = 0; i < arr.length; i++)
+        {
+            var option = document.createElement("option");
+            option.value = arr[i].id;
+            option.innerText = arr[i].name + "-" + arr[i].klasse + "-" + arr[i].von;
+            select.appendChild(option);
+        }
+        select.value = "0";
     });
 }
 
@@ -138,7 +151,11 @@ function entwurfSpeichern()
         }
         body += inp.name + "=" + encodeURIComponent(inp.value);
     }
-    asyncRequest("POST", "/table/save", body, function tmp(){pushNotification("Entwurf gespeichert!", "Der Entwurf wurde gespeichert!")});
+    asyncRequest("POST", "/table/save", body, function tmp()
+    {
+        updateAvailableAntraege();
+        pushNotification("Entwurf gespeichert!", "Der Entwurf wurde gespeichert!");
+    });
 }
 
 function entwurfBeantragen()
@@ -149,7 +166,11 @@ function entwurfBeantragen()
 
 function entwurfEntfernen()
 {
-
+    var select = document.getElementById("select-saved");
+    asyncRequest("POST", "/antrag/"+select.value+"/remove", "", function(){
+        console.log(this.response);
+        updateAvailableAntraege();
+    });
 }
 
 
@@ -215,7 +236,7 @@ function reloadContainerByResponse(dataResponse, containerId)
         }
         else
         {
-            console.log("Error reloadContainerByResponse")
+            console.log("Error reloadContainerByResponse");
         }
     }
     else

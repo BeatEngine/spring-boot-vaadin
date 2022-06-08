@@ -77,6 +77,19 @@ public class HomeService
         return new ResponseEntity<byte[]>(response.toString().getBytes(),HttpStatus.OK);
     }
 
+    public ResponseEntity<byte[]> getAntragListe()
+    {
+        final JSONArray arr = new JSONArray(antragRepo.findAll());
+        return new ResponseEntity<byte[]>(arr.toString().getBytes(),HttpStatus.OK);
+    }
+
+    public ResponseEntity<byte[]> getAntragListe(final long userId)
+    {
+        final JSONArray arr = new JSONArray(antragRepo.findByUserId(userId));
+        return new ResponseEntity<byte[]>(arr.toString().getBytes(),HttpStatus.OK);
+    }
+
+
 				/**
 				* Description
 				*
@@ -160,4 +173,9 @@ public class HomeService
         return new ModelAndView("home");
     }
 
+    public ResponseEntity<byte[]> removeAntragById(long antragId)
+    {
+        antragRepo.deleteById(antragId);
+        return new ResponseEntity<>(("{action:removed, id:"+antragId+"}").getBytes(),HttpStatus.OK);
+    }
 }
